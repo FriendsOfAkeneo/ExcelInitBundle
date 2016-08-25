@@ -4,11 +4,11 @@ What is Akeneo Excel Connector Bundle?
 .. figure:: /Resources/doc/pictures/akeneo_excel.png
    :alt: Logo ExcelConnector
 
-This bundle adds support of Excel XSLX files as a source for
-initialization of catalog structure for `Akeneo PIM <https://github.com/akeneo/pim-community-standard>`__.
+This bundle adds support of Excel XSLX files as a source for initialization of catalog structure
+for `Akeneo PIM <https://github.com/akeneo/pim-community-standard>`__.
 
 **Note:** The file init.xslx must be opened and edited with Excel.
-Since version 1.7, this extension is not comatible with Excel 2003 xls files.
+This extension is not comatible with Excel 2003 xls files.
 Usage of LibreOffice/OpenOffice disables validation of input and can lead to malformed file.
 
 Getting started

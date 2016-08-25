@@ -21,11 +21,10 @@ Localizable labels
 ------------------
 
 These columns allows you to define localized label for your attribute.
-You will have to add one column per locale. Be sure they are grouped
-below the Labels section (line #1).
+You will have to add one column per locale. Be sure they are grouped below the Labels section (line #1).
 
-The 3rd line is hidden, you will have to show it if you want to add
-other locales. The following example assume you are showing this line.
+The 3rd line is hidden, you will have to show it if you want to add other locales.
+The following example assume you are showing this line.
 
 **Example:**
 

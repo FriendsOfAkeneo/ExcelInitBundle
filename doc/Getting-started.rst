@@ -8,19 +8,17 @@ Create an InstallerBundle
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can create your own InstallerBundle by following the instructions from the documentation :
-http://docs.akeneo.com/1.4/cookbook/setup_data/customize_installer.html
+http://docs.akeneo.com/1.6/cookbook/setup_data/customize_installer.html
 
 Copy the fixtures
 ~~~~~~~~~~~~~~~~~
 
-All minimal fixtures are located in the **Resources/fixtures/minimal**
-folder inside the **ExcelInitBundle**.
+All minimal fixtures are located in the **src/Resources/fixtures/minimal** folder inside the **ExcelInitBundle**.
 
-All these fixtures can't be set in the init.xslx files. Be sure to use
-the very same name/code in both the init.xslx files and the YML files.
+All these fixtures can't be set in the init.xslx files.
+Be sure to use the very same name/code in both the init.xslx files and the YML files.
 
-Place them in the same directory inside your InstallerBundle. Here is a
-description of what each files contains:
+Place them in the same directory inside your InstallerBundle. Here is a description of what each files contains:
 
 CE edition
 ^^^^^^^^^^
@@ -28,21 +26,21 @@ CE edition
 +------------------------+-------------------------------------------------------------------------+
 | File                   | Description                                                             |
 +========================+=========================================================================+
-| **currencies.yml**     | Contains all currencies used (and the ones that are removed)             |
+| **currencies.csv**     | Contains all currencies used (and the ones that are removed)             |
 +------------------------+-------------------------------------------------------------------------+
 | **init.xslx**          | Contains the whole Catalog description, see init.xslx structure below   |
 +------------------------+-------------------------------------------------------------------------+
-| **locales.yml**        | Defines the used locales and their currency                              |
+| **locales.csv**        | Defines the used locales and their currency                              |
 +------------------------+-------------------------------------------------------------------------+
-| **user\_groups.yml**   | Defines all user groups (code + label)                                   |
+| **user\_groups.csv**   | Defines all user groups (code + label)                                   |
 +------------------------+-------------------------------------------------------------------------+
-| **user\_roles.yml**    | Defines all user roles (code + label)                                    |
+| **user\_roles.csv**    | Defines all user roles (code + label)                                    |
 +------------------------+-------------------------------------------------------------------------+
-| **users.yml**          | Defines users list                                                       |
+| **users.csv**          | Defines users list                                                       |
 +------------------------+-------------------------------------------------------------------------+
 
-You can still have a look at the `Akeneo PIM minimal
-fixtures <https://github.com/akeneo/pim-community-dev/tree/1.4/src/Pim/Bundle/InstallerBundle/Resources/fixtures/minimal>`__
+You can still have a look at the `Akeneo PIM minimal fixtures
+<https://github.com/akeneo/pim-community-dev/tree/1.4/src/Pim/Bundle/InstallerBundle/Resources/fixtures/minimal>`__
 set to get a full list of the files and their expected format.
 
 EE edition (incl. CE files)
@@ -56,13 +54,13 @@ will have to define them separately.
 +---------------------------------------+-------------------------------------+
 | File                                  | Description                         |
 +=======================================+=====================================+
-| **attribute\_groups\_accesses.yml**   | Contains ACL for attribute groups   |
+| **attribute\_groups\_accesses.csv**   | Contains ACL for attribute groups   |
 +---------------------------------------+-------------------------------------+
 | **category\_accesses.yml**            | Contains ACL for categories         |
 +---------------------------------------+-------------------------------------+
-| **locale\_accesses.yml**              | Contains ACL for locales            |
+| **locale\_accesses.csv**              | Contains ACL for locales            |
 +---------------------------------------+-------------------------------------+
-| **jobs\_accesses.yml**                | Contains ACL for jobs               |
+| **job\_profile\_accesses.csv**        | Contains ACL for jobs               |
 +---------------------------------------+-------------------------------------+
 | **asset\_categories.csv**             | Contains assets master category     |
 +---------------------------------------+-------------------------------------+
@@ -85,16 +83,16 @@ set your catalog structure:
 - attribute options
 - families (as many tabs as required)
 
-See `tab description
-section <Home.rst#define-the-structure-of-your-catalog>`__ for more
-details on how to customize the init.xslx file.
+See `tab description section <Home.rst#define-the-structure-of-your-catalog>`__
+for more details on how to customize the init.xslx file.
 
 Change PIM parameter to use your custom installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You have to override ``pim_installer.fixture_loader.job_loader.config_file``. To do so, add the following lines in the ``parameters.yml``. If this file
-does not exist, create it in ``Acme/Bundle/InstallerBundle/Resources/config/parameters.yml`` and make sure that the file is loaded inside
-``DependencyInjection/AcmeBundleInstallerExtension.php`` :
+You have to override ``pim_installer.fixture_loader.job_loader.config_file``.
+To do so, add the following lines in the ``parameters.yml``. If this file does not exist,
+create it in ``Acme/Bundle/InstallerBundle/Resources/config/parameters.yml``
+and make sure that the file is loaded inside ``DependencyInjection/AcmeBundleInstallerExtension.php`` :
 
 .. code:: php
     <?php
@@ -109,9 +107,9 @@ does not exist, create it in ``Acme/Bundle/InstallerBundle/Resources/config/para
     /**
      * This is the class that loads and manages your bundle configuration
      *
-     * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
+     * To learn more see {@link http://symfony.com/doc/1.6/cookbook/bundles/extension.html}
      */
-    class HermesInstallConnectorExtension extends Extension
+    class AcmeInstallConnectorExtension extends Extension
     {
         /**
          * {@inheritDoc}

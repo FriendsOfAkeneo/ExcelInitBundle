@@ -1,15 +1,13 @@
 Channels tab
 ============
 
-In this tab you can define all the channels you are using. For more
-details about the key concept of channels, see `channels in the user
-guide <http://www.akeneo.com/doc/user-guide/key-concepts/channels/>`__.
+In this tab you can define all the channels you are using. For more details about the key concept of channels,
+see `channels in the user guide <http://www.akeneo.com/doc/user-guide/key-concepts/channels/>`__.
 
 Channel code
 ------------
 
-Channel code must be only composed of letters, numbers, spaces and
-underscores. No other character will be accepted.
+Channel code must be only composed of letters, numbers, spaces and underscores. No other character will be accepted.
 
 Channel label
 -------------
