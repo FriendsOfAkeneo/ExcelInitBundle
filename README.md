@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/akeneo/ExcelInitBundle.svg?branch=master)](https://travis-ci.org/akeneo/ExcelInitBundle)
 
-![alt text](./src/Resources/doc/pictures/akeneo_excel.png "")
+![alt text](./doc/pictures/akeneo_excel.png "")
 
 This bundle adds support of Excel XSLX files as a source for initializing catalog structure for [Akeneo PIM](https://github.com/akeneo/pim-community-standard).
 
@@ -42,14 +42,14 @@ Now let's clean your cache and dump your assets:
 
 ### Getting started
 
-See [Resources/doc/Getting started](./Resources/doc/Getting-started.rst) for more details on how to set your catalog structure
-using the [init.xslx](./Resources/fixtures/minimal/init.xlsx) file.
+See [doc/Getting started](./doc/Getting-started.rst) for more details on how to set your catalog structure
+using the [init.xslx](./src/Resources/fixtures/minimal/init.xlsx) file.
 
-See [Resources/doc folder](./Resources/doc/Home.rst) for more details on how to set your catalog structure.
+See [doc folder](./doc/Home.rst) for more details on how to set your catalog structure.
 
 ### Supported file
 
-Input file must follow [init.xslx](./Resources/fixtures/minimal/init.xlsx) structure.
+Input file must follow [init.xslx](./src/Resources/fixtures/minimal/init.xlsx) structure.
 Note that the file must be opened with Excel.
 LibreOffice/OpenOffice are not in compliance with validations data that are available in the spreadsheet.
 
