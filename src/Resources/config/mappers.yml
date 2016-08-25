@@ -1,0 +1,6 @@
+parameters:
+    pim_excel_installer.mapper.attribute_types.class: Pim\Bundle\ExcelInitBundle\Mapper\AttributeTypeMapper
+
+services:
+    pim_excel_installer.mapper.attribute_types:
+        class: '%pim_excel_installer.mapper.attribute_types.class%'

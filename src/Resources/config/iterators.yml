@@ -1,0 +1,8 @@
+parameters:
+    pim_excel_installer.iterator.file.xlsx.attribute.class: Pim\Bundle\ExcelInitBundle\Iterator\AttributeXlsxFileIterator
+    pim_excel_installer.iterator.file.xlsx.family.class:    Pim\Bundle\ExcelInitBundle\Iterator\InitFamilyFileIterator
+    pim_excel_installer.iterator.array_helper.class:        Pim\Bundle\ExcelInitBundle\Iterator\ArrayHelper
+
+services:
+    pim_excel_installer.iterator.array_helper:
+        class: %pim_excel_installer.iterator.array_helper.class%

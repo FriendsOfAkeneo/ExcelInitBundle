@@ -1,0 +1,104 @@
+parameters:
+    pim_excel_installer.reader.file.attribute.class: Pim\Bundle\ExcelInitBundle\Reader\AttributeXlsxReader
+    pim_excel_installer.reader.file.file_iterator.class: Pim\Bundle\ExcelInitBundle\Iterator\InitFileIterator
+    pim_excel_installer.reader.file.attributes_iterator.class: Pim\Bundle\ExcelInitBundle\Iterator\InitAttributesFileIterator
+    pim_excel_installer.reader.file.families_iterator.class: Pim\Bundle\ExcelInitBundle\Iterator\InitFamilyFileIterator
+
+services:
+    pim_excel_installer.reader.file.xlsx_iterator_factory:
+        class: '%pim_connector.reader.file.file_iterator_factory.class%'
+        arguments:
+            - '%pim_excel_installer.reader.file.file_iterator.class%'
+            - 'xlsx'
+
+    pim_excel_installer.reader.file.xlsx_attribute_iterator_factory:
+        class: '%pim_connector.reader.file.file_iterator_factory.class%'
+        arguments:
+            - '%pim_excel_installer.reader.file.attributes_iterator.class%'
+            - 'xlsx'
+
+    pim_excel_installer.reader.file.xlsx_family_iterator_factory:
+        class: '%pim_connector.reader.file.file_iterator_factory.class%'
+        arguments:
+            - '%pim_excel_installer.reader.file.families_iterator.class%'
+            - 'xlsx'
+
+    pim_excel_installer.reader.xls_init.attribute_group:
+        class: '%pim_connector.reader.file.xlsx.class%'
+        arguments:
+            - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
+            - '@pim_connector.array_converter.flat_to_standard.attribute_group'
+            - header_key: code
+              include_worksheets: [ '/^attribute_groups/' ]
+
+    pim_excel_installer.reader.xls_init.channel:
+        class: '%pim_connector.reader.file.xlsx.class%'
+        arguments:
+            - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
+            - '@pim_connector.array_converter.flat_to_standard.channel'
+            - header_key: code
+              include_worksheets: [ '/^channels/' ]
+
+    pim_excel_installer.reader.xls_init.category:
+        class: '%pim_connector.reader.file.xlsx.class%'
+        arguments:
+            - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
+            - '@pim_connector.array_converter.flat_to_standard.category'
+            - header_key: code
+              include_worksheets: [ '/^categories/' ]
+
+    pim_excel_installer.reader.xls_init.option:
+        class: '%pim_connector.reader.file.xlsx.class%'
+        arguments:
+            - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
+            - '@pim_connector.array_converter.flat_to_standard.attribute_option'
+            - header_key: code
+              include_worksheets: [ '/^options/' ]
+
+    pim_excel_installer.reader.xls_init.group_type:
+        class: '%pim_connector.reader.file.xlsx.class%'
+        arguments:
+            - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
+            - '@pim_connector.array_converter.flat_to_standard.group_type'
+            - header_key: code
+              include_worksheets: [ '/^group_types/' ]
+
+    pim_excel_installer.reader.xls_init.association_type:
+        class: '%pim_connector.reader.file.xlsx.class%'
+        arguments:
+            - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
+            - '@pim_connector.array_converter.flat_to_standard.association_type'
+            - header_key: code
+              include_worksheets: [ '/^association_types/' ]
+
+    pim_excel_installer.reader.xls_init.attribute:
+        class: '%pim_excel_installer.reader.file.attribute.class%'
+        arguments:
+            - '@pim_excel_installer.reader.file.xlsx_attribute_iterator_factory'
+            - '@pim_excel_installer.array_converter.flat_to_standard.attribute'
+            - header_key: code
+              include_worksheets: [ '/^attributes/' ]
+              attribute_types_mapper: '@pim_excel_installer.mapper.attribute_types'
+
+    pim_excel_installer.reader.xls_init.attribute_option:
+        class: '%pim_connector.reader.file.xlsx.class%'
+        arguments:
+            - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
+            - '@pim_connector.array_converter.flat_to_standard.attribute_option'
+            - header_key: 'attribute'
+              include_worksheets: [ '/^options/' ]
+
+    pim_excel_installer.reader.xls_init.family:
+        class: '%pim_connector.reader.file.xlsx.class%'
+        arguments:
+            - '@pim_excel_installer.reader.file.xlsx_family_iterator_factory'
+            - '@pim_connector.array_converter.flat_to_standard.family'
+            - family_data_row:    2
+              family_code_column: 1
+              family_labels_locales_row: 1
+              family_labels_first_column: 4
+              channel_label_row:   4
+              attribute_label_row: 5
+              attribute_data_row: 6
+              include_worksheets: [ '/^family/' ]
+

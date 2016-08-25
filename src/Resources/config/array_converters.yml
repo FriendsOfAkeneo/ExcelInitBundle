@@ -1,0 +1,7 @@
+parameters:
+    pim_excel_installer.array_converter.flat_to_standard.attribute.class: Pim\Bundle\ExcelInitBundle\ArrayConverter\Flat\Attribute
+
+services:
+    pim_excel_installer.array_converter.flat_to_standard.attribute:
+        class: '%pim_excel_installer.array_converter.flat_to_standard.attribute.class%'
+        parent: 'pim_connector.array_converter.flat_to_standard.attribute'

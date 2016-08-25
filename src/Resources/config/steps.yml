@@ -1,0 +1,84 @@
+parameters:
+
+services:
+    pim_excel_installer.step.init.attribute_groups:
+        class: '%pim_connector.step.item_step.class%'
+        arguments:
+            - 'import_attribute_groups'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            - '@pim_excel_installer.reader.xls_init.attribute_group'
+            - '@pim_connector.processor.denormalization.attribute_group'
+            - '@pim_connector.writer.database.attribute_group'
+
+    pim_excel_installer.step.init.categories:
+        class: '%pim_connector.step.item_step.class%'
+        arguments:
+            - 'import_categories'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            - '@pim_excel_installer.reader.xls_init.category'
+            - '@pim_connector.processor.denormalization.category'
+            - '@pim_connector.writer.database.category'
+            - 1
+
+    pim_excel_installer.step.init.channels:
+        class: '%pim_connector.step.item_step.class%'
+        arguments:
+            - 'import_channels'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            - '@pim_excel_installer.reader.xls_init.channel'
+            - '@pim_connector.processor.denormalization.channel'
+            - '@pim_connector.writer.database.channel'
+
+    pim_excel_installer.step.init.group_types:
+        class: '%pim_connector.step.item_step.class%'
+        arguments:
+            - 'import_group_types'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            - '@pim_excel_installer.reader.xls_init.group_type'
+            - '@pim_connector.processor.denormalization.group_type'
+            - '@pim_connector.writer.database.group_type'
+
+    pim_excel_installer.step.init.association_types:
+        class: '%pim_connector.step.item_step.class%'
+        arguments:
+            - 'import_association_type'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            - '@pim_excel_installer.reader.xls_init.association_type'
+            - '@pim_connector.processor.denormalization.association_type'
+            - '@pim_connector.writer.database.association_type'
+
+    pim_excel_installer.step.init.attributes:
+        class: '%pim_connector.step.item_step.class%'
+        arguments:
+            - 'import_attributes'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            - '@pim_excel_installer.reader.xls_init.attribute'
+            - '@pim_connector.processor.denormalization.attribute'
+            - '@pim_connector.writer.database.attribute'
+            - 1
+
+    pim_excel_installer.step.init.attribute_options:
+        class: '%pim_connector.step.item_step.class%'
+        arguments:
+            - 'import_attribute_options'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            - '@pim_excel_installer.reader.xls_init.attribute_option'
+            - '@pim_connector.processor.denormalization.attribute_option'
+            - '@pim_connector.writer.database.attribute_option'
+
+    pim_excel_installer.step.init.families:
+        class: '%pim_connector.step.item_step.class%'
+        arguments:
+            - 'import_families'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            - '@pim_excel_installer.reader.xls_init.family'
+            - '@pim_connector.processor.denormalization.family'
+            - '@pim_connector.writer.database.family'
