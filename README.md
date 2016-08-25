@@ -42,10 +42,10 @@ Now let's clean your cache and dump your assets:
 
 ### Getting started
 
-See [Resources/doc/Getting started](./doc/Getting-started.rst) for more details on how to set your catalog structure
+See [doc/Getting started](./doc/Getting-started.rst) for more details on how to set your catalog structure
 using the [init.xslx](./src/Resources/fixtures/minimal/init.xlsx) file.
 
-See [Resources/doc folder](./doc/Home.rst) for more details on how to set your catalog structure.
+See [doc folder](./doc/Home.rst) for more details on how to set your catalog structure.
 
 ### Supported file
 

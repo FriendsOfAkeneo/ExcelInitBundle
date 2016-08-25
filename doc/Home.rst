@@ -1,7 +1,7 @@
 What is Akeneo Excel Connector Bundle?
 ======================================
 
-.. figure:: /Resources/doc/pictures/akeneo_excel.png
+.. figure:: pictures/akeneo_excel.png
    :alt: Logo ExcelConnector
 
 This bundle adds support of Excel XSLX files as a source for initialization of catalog structure
