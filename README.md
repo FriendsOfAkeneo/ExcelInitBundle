@@ -19,7 +19,7 @@ This bundle adds support of Excel XSLX files as a source for initializing catalo
 From your application root:
 
 ```bash
-    php composer.phar require --prefer-dist akeneo/excel-installer-bundle:1.0.*
+    php composer.phar require --prefer-dist akeneo/excel-init-bundle:1.0.*
 ```
 
 Enable the bundle in the `app/AppKernel.php` file in the `registerProjectBundles()` method:
