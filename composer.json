@@ -19,10 +19,10 @@
         }
     ],
     "require": {
-        "akeneo/pim-community-dev": "1.6.*@dev"
+        "akeneo/pim-community-dev": "~1.6"
     },
     "require-dev": {
-        "phpspec/phpspec": "3.0.0",
+        "phpspec/phpspec": "@stable",
         "friendsofphp/php-cs-fixer": "@stable",
         "squizlabs/php_codesniffer": "2.3.*",
         "phpmd/phpmd": "2.3.*",
