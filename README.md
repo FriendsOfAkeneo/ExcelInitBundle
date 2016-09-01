@@ -1,4 +1,4 @@
-# Excel Installer Bundle
+# Excel Init Bundle
 
 [![Build Status](https://travis-ci.org/akeneo/ExcelInitBundle.svg?branch=master)](https://travis-ci.org/akeneo/ExcelInitBundle)
 
@@ -55,7 +55,6 @@ LibreOffice/OpenOffice are not in compliance with validations data that are avai
 
 ### Importation job
 
-This bundle allows you to import products files directly in the UI through Import > Import jobs.
 Please note that the init.xlsx import is also available via the UI.
 However, it should not be used as an import system for entities available within this file (families, categories, etc.) once the catalog structure has been set.
 
