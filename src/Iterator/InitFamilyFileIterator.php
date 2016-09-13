@@ -21,7 +21,11 @@ class InitFamilyFileIterator extends InitFileIterator
     {
         $familyData = $this->getChannelData();
         $this->headers = array_keys($familyData);
-        $this->rows = new \ArrayIterator(['dummy_line', $familyData]);
+        if (!$this->nextWorksheet) {
+            $this->rows = new \ArrayIterator(['dummy_header_line', $familyData]);
+        } else {
+            $this->rows = new \ArrayIterator([$familyData]);
+        }
         $this->rows->rewind();
     }
 
