@@ -53,11 +53,6 @@ Input file must follow [init.xslx](./src/Resources/fixtures/minimal/init.xlsx) s
 Note that the file must be opened with Excel.
 LibreOffice/OpenOffice are not in compliance with validations data that are available in the spreadsheet.
 
-### Importation job
-
-Please note that the init.xlsx import is also available via the UI.
-However, it should not be used as an import system for entities available within this file (families, categories, etc.) once the catalog structure has been set.
-
 ## Troubleshooting
 
 ###The import fails when importing families
