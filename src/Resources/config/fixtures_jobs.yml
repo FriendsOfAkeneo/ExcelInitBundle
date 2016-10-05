@@ -36,7 +36,7 @@ jobs:
             filePath: init.xlsx
 
     fixtures_user_group_csv:
-        order: 30
+        order: 15
         connector: Data fixtures
         alias:     fixtures_user_group_csv
         label:     User groups data fixtures
