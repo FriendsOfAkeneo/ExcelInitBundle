@@ -90,8 +90,6 @@ class InitFamilyFileIterator extends InitFileIterator
             }
         }
 
-        $data['attributes'] = implode(',', $data['attributes']);
-
         return $data;
     }
 

@@ -92,7 +92,7 @@ services:
         class: '%pim_connector.reader.file.xlsx.class%'
         arguments:
             - '@pim_excel_installer.reader.file.xlsx_family_iterator_factory'
-            - '@pim_connector.array_converter.flat_to_standard.family'
+            - '@pim_excel_installer.array_converter.flat_to_standard.family'
             - family_data_row:    2
               family_code_column: 1
               family_labels_locales_row: 1
