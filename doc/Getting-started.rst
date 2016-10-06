@@ -8,7 +8,7 @@ Create an InstallerBundle
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can create your own InstallerBundle by following the instructions from the documentation :
-http://docs.akeneo.com/1.6/cookbook/setup_data/customize_installer.html
+https://docs.akeneo.com/1.6/cookbook/setup_data/customize_dataset.html
 
 Copy the fixtures
 ~~~~~~~~~~~~~~~~~
@@ -56,7 +56,7 @@ will have to define them separately.
 +=======================================+=====================================+
 | **attribute\_groups\_accesses.csv**   | Contains ACL for attribute groups   |
 +---------------------------------------+-------------------------------------+
-| **category\_accesses.yml**            | Contains ACL for categories         |
+| **product\_category\_accesses.yml**   | Contains ACL for product categories |
 +---------------------------------------+-------------------------------------+
 | **locale\_accesses.csv**              | Contains ACL for locales            |
 +---------------------------------------+-------------------------------------+
@@ -134,7 +134,7 @@ Define the data used by the installer :
 
 .. code:: yml
 
-    # app/config/pim_parameters.yml
+    # app/config/parameters.yml
     parameters:
         ...
         installer_data: 'AcmeDemoBundle:minimal'
