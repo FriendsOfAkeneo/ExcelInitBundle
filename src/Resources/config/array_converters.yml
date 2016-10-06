@@ -5,3 +5,10 @@ services:
     pim_excel_installer.array_converter.flat_to_standard.attribute:
         class: '%pim_excel_installer.array_converter.flat_to_standard.attribute.class%'
         parent: 'pim_connector.array_converter.flat_to_standard.attribute'
+
+    pim_excel_installer.array_converter.flat_to_standard.family:
+        class: '%pim_connector.array_converter.dummy.class%'
+        arguments:
+            - '@pim_connector.array_convertor.checker.fields_requirement'
+            - ['code']
+            - ['code']
