@@ -3,6 +3,7 @@ Attributes tab
 
 In this tab you will define every attribute depending wether they belong to one or more families.
 You have to define all attributes in this worksheet before defining the families.
+
 *Deprecated*: If the attribute is only part of one family, consider defining it directly in the corresponding family tab.
 
 
