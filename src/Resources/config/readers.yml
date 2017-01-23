@@ -31,6 +31,14 @@ services:
             - header_key: code
               include_worksheets: [ '/^attribute_groups/' ]
 
+    pim_excel_installer.reader.xls_init.currencies:
+        class: '%pim_connector.reader.file.xlsx.class%'
+        arguments:
+            - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
+            - '@pim_connector.array_converter.flat_to_standard.currency'
+            - header_key: code
+              include_worksheets: [ '/^currencies?/' ]
+
     pim_excel_installer.reader.xls_init.channel:
         class: '%pim_connector.reader.file.xlsx.class%'
         arguments:
@@ -38,6 +46,30 @@ services:
             - '@pim_connector.array_converter.flat_to_standard.channel'
             - header_key: code
               include_worksheets: [ '/^channels/' ]
+
+    pim_excel_installer.reader.xls_init.user_groups:
+        class: '%pim_connector.reader.file.xlsx.class%'
+        arguments:
+            - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
+            - '@pim_connector.array_converter.flat_to_standard.user_group'
+            - header_key: code
+              include_worksheets: [ '/^user_groups$/' ]
+
+    pim_excel_installer.reader.xls_init.user_roles:
+        class: '%pim_connector.reader.file.xlsx.class%'
+        arguments:
+            - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
+            - '@pim_connector.array_converter.flat_to_standard.user_role'
+            - header_key: role
+              include_worksheets: [ '/^user_roles$/' ]
+
+    pim_excel_installer.reader.xls_init.users:
+        class: '%pim_connector.reader.file.xlsx.class%'
+        arguments:
+            - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
+            - '@pim_connector.array_converter.flat_to_standard.user'
+            - header_key: username
+              include_worksheets: [ '/^users$/' ]
 
     pim_excel_installer.reader.xls_init.category:
         class: '%pim_connector.reader.file.xlsx.class%'

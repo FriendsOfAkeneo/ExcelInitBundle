@@ -1,13 +1,4 @@
 jobs:
-    fixtures_currency_csv:
-        order: 10
-        connector: Data fixtures
-        alias:     fixtures_currency_csv
-        label:     Currencies data fixtures
-        type:      fixtures
-        configuration:
-            filePath: currencies.csv
-
     fixtures_locale_csv:
         order: 10
         connector: Data fixtures
@@ -17,26 +8,8 @@ jobs:
         configuration:
             filePath: locales.csv
 
-    fixtures_user_group_csv:
-        order: 10
-        connector: Data fixtures
-        alias:     fixtures_user_group_csv
-        label:     User groups data fixtures
-        type:      fixtures
-        configuration:
-            filePath: user_groups.csv
-
-    fixtures_user_role_csv:
-        order: 10
-        connector: Data fixtures
-        alias:     fixtures_user_role_csv
-        label:     User roles data fixtures
-        type:      fixtures
-        configuration:
-            filePath: user_roles.csv
-
     fixtures_excel_init_import:
-        order: 20
+        order: 50
         connector: Akeneo Excel Connector
         alias:     xlsx_init
         label:     Excel initialisation
@@ -44,17 +17,8 @@ jobs:
         configuration:
             filePath: init.xlsx
 
-    fixtures_user_csv:
-        order: 50
-        connector: Data fixtures
-        alias:     fixtures_user_csv
-        label:     Users data fixtures
-        type:      fixtures
-        configuration:
-            filePath: users.csv
-
     fixtures_job_yml:
-        order: 100
+        order: 20
         connector: Data fixtures
         alias:     fixtures_job_yml
         label:     Jobs data fixtures
