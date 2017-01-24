@@ -45,7 +45,7 @@ services:
             - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
             - '@pim_connector.array_converter.flat_to_standard.channel'
             - header_key: code
-              include_worksheets: [ '/^channels$/' ]
+              include_worksheets: [ '/^channels/' ]
 
     pim_excel_installer.reader.xls_init.user_groups:
         class: '%pim_connector.reader.file.xlsx.class%'
