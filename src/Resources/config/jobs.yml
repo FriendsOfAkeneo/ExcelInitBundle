@@ -13,10 +13,10 @@ services:
             - '@akeneo_batch.job_repository'
             -
                 - '@pim_excel_installer.step.init.currencies'
-                - '@pim_excel_installer.step.init.categories'
-                - '@pim_excel_installer.step.init.channels'
                 - '@pim_excel_installer.step.init.user_groups'
                 - '@pim_excel_installer.step.init.user_roles'
+                - '@pim_excel_installer.step.init.categories'
+                - '@pim_excel_installer.step.init.channels'
                 - '@pim_excel_installer.step.init.users'
                 - '@pim_excel_installer.step.init.attribute_groups'
                 - '@pim_excel_installer.step.init.group_types'

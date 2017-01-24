@@ -8,20 +8,20 @@ jobs:
         configuration:
             filePath: locales.csv
 
-    fixtures_job_yml:
-        order: 20
-        connector: Data fixtures
-        alias:     fixtures_job_yml
-        label:     Jobs data fixtures
-        type:      fixtures
-        configuration:
-            filePath: jobs.yml
-
     fixtures_excel_init_import:
-        order: 50
+        order: 20
         connector: Akeneo Excel Initialization
         alias:     excel_init_fixtures
         label:     Excel initialisation
         type:      fixtures
         configuration:
             filePath: init.xlsx
+
+    fixtures_job_yml:
+        order: 50
+        connector: Data fixtures
+        alias:     fixtures_job_yml
+        label:     Jobs data fixtures
+        type:      fixtures
+        configuration:
+            filePath: jobs.yml

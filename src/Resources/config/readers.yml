@@ -29,7 +29,7 @@ services:
             - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
             - '@pim_connector.array_converter.flat_to_standard.attribute_group'
             - header_key: code
-              include_worksheets: [ '/^attribute_groups/' ]
+              include_worksheets: [ '/^attribute_groups$/' ]
 
     pim_excel_installer.reader.xls_init.currencies:
         class: '%pim_connector.reader.file.xlsx.class%'
@@ -37,7 +37,7 @@ services:
             - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
             - '@pim_connector.array_converter.flat_to_standard.currency'
             - header_key: code
-              include_worksheets: [ '/^currencies?/' ]
+              include_worksheets: [ '/^currencies$/' ]
 
     pim_excel_installer.reader.xls_init.channel:
         class: '%pim_connector.reader.file.xlsx.class%'
@@ -45,7 +45,7 @@ services:
             - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
             - '@pim_connector.array_converter.flat_to_standard.channel'
             - header_key: code
-              include_worksheets: [ '/^channels/' ]
+              include_worksheets: [ '/^channels$/' ]
 
     pim_excel_installer.reader.xls_init.user_groups:
         class: '%pim_connector.reader.file.xlsx.class%'
@@ -77,7 +77,7 @@ services:
             - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
             - '@pim_connector.array_converter.flat_to_standard.category'
             - header_key: code
-              include_worksheets: [ '/^categories/' ]
+              include_worksheets: [ '/^categories$/' ]
 
     pim_excel_installer.reader.xls_init.option:
         class: '%pim_connector.reader.file.xlsx.class%'
@@ -93,7 +93,7 @@ services:
             - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
             - '@pim_connector.array_converter.flat_to_standard.group_type'
             - header_key: code
-              include_worksheets: [ '/^group_types/' ]
+              include_worksheets: [ '/^group_types$/' ]
 
     pim_excel_installer.reader.xls_init.association_type:
         class: '%pim_connector.reader.file.xlsx.class%'
@@ -101,7 +101,7 @@ services:
             - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
             - '@pim_connector.array_converter.flat_to_standard.association_type'
             - header_key: code
-              include_worksheets: [ '/^association_types/' ]
+              include_worksheets: [ '/^association_types$/' ]
 
     pim_excel_installer.reader.xls_init.attribute:
         class: '%pim_excel_installer.reader.file.attribute.class%'
