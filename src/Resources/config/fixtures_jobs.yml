@@ -8,7 +8,7 @@ jobs:
         configuration:
             filePath: locales.csv
 
-    fixtures_excel_init_import:
+    fixtures_xlsx_init_import:
         order: 20
         connector: Akeneo Excel Initialization
         alias:     excel_init_fixtures

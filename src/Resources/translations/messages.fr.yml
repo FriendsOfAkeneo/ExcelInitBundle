@@ -1,4 +1,4 @@
-batch_jobs.excel_init_import:
+batch_jobs.xlsx_init_import:
     label: Initialisation Excel
     import_users:
         label: Import utilisateurs

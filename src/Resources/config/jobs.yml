@@ -1,6 +1,6 @@
 parameters:
     pim_excel_installer.job_name.init_xlsx_fixtures: 'excel_init_fixtures'
-    pim_excel_installer.job_name.init_xlsx_import: 'excel_init_import'
+    pim_excel_installer.job_name.init_xlsx_import: 'xlsx_init_import'
     pim_excel_installer.connector_name: 'Akeneo Excel Initialization'
     pim_installer.fixture_loader.job_loader.config_file: 'PimExcelInitBundle/Resources/config/fixtures_jobs.yml'
 
@@ -30,7 +30,7 @@ services:
                 connector: '%pim_excel_installer.connector_name%'
                 type: '%pim_installer.job.fixture_type%'
 
-    pim_excel_installer.job.excel_init_import:
+    pim_excel_installer.job.xlsx_init_import:
         class: '%pim_connector.job.simple_job.class%'
         arguments:
             - '%pim_excel_installer.job_name.init_xlsx_import%'
