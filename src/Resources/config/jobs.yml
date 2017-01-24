@@ -1,12 +1,14 @@
 parameters:
-    pim_excel_installer.job_name.init_xlsx: 'xlsx_init'
+    pim_excel_installer.job_name.init_xlsx_fixtures: 'excel_init_fixtures'
+    pim_excel_installer.job_name.init_xlsx_import: 'excel_init_import'
+    pim_excel_installer.connector_name: 'Akeneo Excel Initialization'
     pim_installer.fixture_loader.job_loader.config_file: 'PimExcelInitBundle/Resources/config/fixtures_jobs.yml'
 
 services:
-    pim_excel_installer.job.excel_init_import:
+    pim_excel_installer.job.excel_init_fixture:
         class: '%pim_connector.job.simple_job.class%'
         arguments:
-            - '%pim_excel_installer.job_name.init_xlsx%'
+            - '%pim_excel_installer.job_name.init_xlsx_fixtures%'
             - '@event_dispatcher'
             - '@akeneo_batch.job_repository'
             -
@@ -25,14 +27,37 @@ services:
         tags:
             -
                 name: akeneo_batch.job
-                connector: '%pim_connector.connector_name.csv%'
+                connector: '%pim_excel_installer.connector_name%'
                 type: '%pim_installer.job.fixture_type%'
+
+    pim_excel_installer.job.excel_init_import:
+        class: '%pim_connector.job.simple_job.class%'
+        arguments:
+            - '%pim_excel_installer.job_name.init_xlsx_import%'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            -
+                - '@pim_excel_installer.step.init.user_groups'
+                - '@pim_excel_installer.step.init.user_roles'
+                - '@pim_excel_installer.step.init.users'
+                - '@pim_excel_installer.step.init.attribute_groups'
+                - '@pim_excel_installer.step.init.group_types'
+                - '@pim_excel_installer.step.init.association_types'
+                - '@pim_excel_installer.step.init.attributes'
+                - '@pim_excel_installer.step.init.attribute_options'
+                - '@pim_excel_installer.step.init.families'
+        tags:
+            -
+                name: akeneo_batch.job
+                connector: '%pim_excel_installer.connector_name%'
+                type: '%pim_connector.job.import_type%'
 
     pim_excel_installer.job.job_parameters.default_values_provider.simple_xlsx_import:
         class: '%pim_connector.job.job_parameters.default_values_provider.simple_xlsx_import.class%'
         arguments:
             -
-                - '%pim_excel_installer.job_name.init_xlsx%'
+                - '%pim_excel_installer.job_name.init_xlsx_fixtures%'
+                - '%pim_excel_installer.job_name.init_xlsx_import%'
         tags:
             - { name: akeneo_batch.job.job_parameters.default_values_provider }
 
@@ -40,7 +65,8 @@ services:
         class: '%pim_connector.job.job_parameters.constraint_collection_provider.simple_xlsx_import.class%'
         arguments:
             -
-                - '%pim_excel_installer.job_name.init_xlsx%'
+                - '%pim_excel_installer.job_name.init_xlsx_fixtures%'
+                - '%pim_excel_installer.job_name.init_xlsx_import%'
         tags:
             - { name: akeneo_batch.job.job_parameters.constraint_collection_provider }
 
@@ -48,6 +74,7 @@ services:
         class: '%pim_import_export.job_parameters.form_configuration_provider.simple_xlsx_import.class%'
         arguments:
             -
-                - '%pim_excel_installer.job_name.init_xlsx%'
+                - '%pim_excel_installer.job_name.init_xlsx_fixtures%'
+                - '%pim_excel_installer.job_name.init_xlsx_import%'
         tags:
             - { name: pim_import_export.job_parameters.form_configuration_provider }

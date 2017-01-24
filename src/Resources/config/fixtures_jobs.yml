@@ -19,8 +19,8 @@ jobs:
 
     fixtures_excel_init_import:
         order: 50
-        connector: Akeneo Excel Connector
-        alias:     xlsx_init
+        connector: Akeneo Excel Initialization
+        alias:     excel_init_fixtures
         label:     Excel initialisation
         type:      fixtures
         configuration:

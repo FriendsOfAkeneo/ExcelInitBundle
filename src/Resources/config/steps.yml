@@ -35,7 +35,7 @@ services:
     pim_excel_installer.step.init.user_groups:
         class: '%pim_connector.step.item_step.class%'
         arguments:
-            - 'import_users'
+            - 'import_user_groups'
             - '@event_dispatcher'
             - '@akeneo_batch.job_repository'
             - '@pim_excel_installer.reader.xls_init.user_groups'
@@ -45,7 +45,7 @@ services:
     pim_excel_installer.step.init.user_roles:
         class: '%pim_connector.step.item_step.class%'
         arguments:
-            - 'import_users'
+            - 'import_user_roles'
             - '@event_dispatcher'
             - '@akeneo_batch.job_repository'
             - '@pim_excel_installer.reader.xls_init.user_roles'

@@ -1,0 +1,20 @@
+batch_jobs.excel_init_import:
+    label: Excel initialization
+    import_users:
+        label: Import users
+    import_user_groups:
+        label: Import user groups
+    import_user_roles:
+        label: Import user roles
+    import_attribute_groups:
+        label: Import attribute groups
+    import_attributes:
+        label: Import attributes
+    import_attribute_options:
+        label: Import attribute options
+    import_association_type:
+        label: Import association type
+    import_group_types:
+        label: Import group types
+    import_families:
+        label: Import families
