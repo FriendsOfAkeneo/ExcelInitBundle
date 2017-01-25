@@ -72,6 +72,7 @@ class InitFamilyFileIterator extends InitFileIterator
             $useAsLabelColumn = 1;
 
             if ($index >= (int) $this->options['attribute_data_row']) {
+                // empty row after trim
                 if (count($row) === 0) {
                     continue;
                 }
