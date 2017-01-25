@@ -42,7 +42,7 @@ class InitFamilyFileIterator extends InitFileIterator
         $labelLocales = [];
         $codeColumn = null;
         $useAsLabelColumn = null;
-        $channelColumn = null;
+        $firstChannelColumn = null;
 
         $arrayHelper = new ArrayHelper();
 
@@ -50,9 +50,6 @@ class InitFamilyFileIterator extends InitFileIterator
 
         foreach ($rowIterator as $index => $row) {
             $row = $this->trimRight($row);
-            if ($index == $this->options['channel_label_row']) {
-                $channelLabels = $row;
-            }
             if ($index == $this->options['family_labels_locales_row']) {
                 $labelLocales = array_slice($row, $this->options['family_labels_first_column']);
             }
@@ -63,14 +60,16 @@ class InitFamilyFileIterator extends InitFileIterator
                     array_slice($row, $this->options['family_labels_first_column'])
                 );
             }
-            if ($index == $this->options['attribute_label_row']) {
-                $attributeLabels = $row;
-                $channelColumn = count($attributeLabels);
-                array_splice($channelLabels, 0, $channelColumn);
+
+            if ($index == $this->options['channel_label_row']) {
+                $channelLabels = $row;
+                $firstChannelColumn = 2;
+                array_splice($channelLabels, 0, $firstChannelColumn);
                 $data['requirements'] = array_fill_keys($channelLabels, []);
-                $codeColumn = array_search('code', $attributeLabels);
-                $useAsLabelColumn = array_search('use_as_label', $attributeLabels);
             }
+
+            $codeColumn = 0;
+            $useAsLabelColumn = 1;
 
             if ($index >= (int) $this->options['attribute_data_row']) {
                 if (count($row) === 0) {
@@ -84,7 +83,7 @@ class InitFamilyFileIterator extends InitFileIterator
                 if (isset($row[$useAsLabelColumn]) && ('1' === trim($row[$useAsLabelColumn]))) {
                     $data['attribute_as_label'] = $code;
                 }
-                $channelValues = array_slice($row, $channelColumn);
+                $channelValues = array_slice($row, $firstChannelColumn);
                 foreach ($channelLabels as $channelIndex => $channel) {
                     if (isset($channelValues[$channelIndex]) && '1' === trim($channelValues[$channelIndex])) {
                         $data['requirements'][$channel][] = $code;
@@ -113,7 +112,6 @@ class InitFamilyFileIterator extends InitFileIterator
             'family_labels_locales_row',
             'family_labels_first_column',
             'channel_label_row',
-            'attribute_label_row',
             'attribute_data_row',
         ]);
     }
