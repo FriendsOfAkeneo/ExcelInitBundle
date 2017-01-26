@@ -105,4 +105,4 @@ Define the data used by the installer :
     # app/config/parameters.yml
     parameters:
         ...
-        installer_data: 'AcmeDemoBundle:minimal'
+        installer_data: 'PimInitInstallerBundle:minimal_EE'
