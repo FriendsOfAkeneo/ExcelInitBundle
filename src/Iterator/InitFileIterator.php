@@ -54,6 +54,10 @@ class InitFileIterator extends FileIterator
             return null;
         }
 
+        if (count($data) == 0) {
+            $data = null;
+        }
+
         return $data;
     }
 
@@ -111,6 +115,9 @@ class InitFileIterator extends FileIterator
     {
         $lastElement = end($data);
         while (false !== $lastElement && empty($lastElement)) {
+            if ($lastElement === 0 || $lastElement === '0') {
+                break;
+            }
             array_pop($data);
             $lastElement = end($data);
         }

@@ -10,6 +10,10 @@ Create an InstallerBundle
 You can create your own InstallerBundle by following the instructions from the documentation :
 https://docs.akeneo.com/1.6/cookbook/setup_data/customize_dataset.html
 
+This extension is also provided with an example of custom installer bundle and you can copy-paste all
+the `Akeneo <Akeneo>`__ folder in your `src` folder.
+
+
 Copy the fixtures
 ~~~~~~~~~~~~~~~~~
 
@@ -26,22 +30,10 @@ CE edition
 +------------------------+-------------------------------------------------------------------------+
 | File                   | Description                                                             |
 +========================+=========================================================================+
-| **currencies.csv**     | Contains all currencies used (and the ones that are removed)             |
-+------------------------+-------------------------------------------------------------------------+
 | **init.xslx**          | Contains the whole Catalog description, see init.xslx structure below   |
 +------------------------+-------------------------------------------------------------------------+
-| **locales.csv**        | Defines the used locales and their currency                              |
+| **locales.csv**        | Defines the used locales and their currency                             |
 +------------------------+-------------------------------------------------------------------------+
-| **user\_groups.csv**   | Defines all user groups (code + label)                                   |
-+------------------------+-------------------------------------------------------------------------+
-| **user\_roles.csv**    | Defines all user roles (code + label)                                    |
-+------------------------+-------------------------------------------------------------------------+
-| **users.csv**          | Defines users list                                                       |
-+------------------------+-------------------------------------------------------------------------+
-
-You can still have a look at the `Akeneo PIM minimal fixtures
-<https://github.com/akeneo/pim-community-dev/tree/1.4/src/Pim/Bundle/InstallerBundle/Resources/fixtures/minimal>`__
-set to get a full list of the files and their expected format.
 
 EE edition (incl. CE files)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -90,43 +82,19 @@ Change PIM parameter to use your custom installation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You have to override ``pim_installer.fixture_loader.job_loader.config_file``.
-To do so, add the following lines in the ``parameters.yml``. If this file does not exist,
-create it in ``Acme/Bundle/InstallerBundle/Resources/config/parameters.yml``
-and make sure that the file is loaded inside ``DependencyInjection/AcmeBundleInstallerExtension.php`` :
-
-.. code:: php
-    <?php
-
-    namespace Acme\Bundle\InstallerBundle\DependencyInjection;
-
-    use Symfony\Component\DependencyInjection\ContainerBuilder;
-    use Symfony\Component\Config\FileLocator;
-    use Symfony\Component\HttpKernel\DependencyInjection\Extension;
-    use Symfony\Component\DependencyInjection\Loader;
-
-    /**
-     * This is the class that loads and manages your bundle configuration
-     *
-     * To learn more see {@link http://symfony.com/doc/1.6/cookbook/bundles/extension.html}
-     */
-    class AcmeInstallConnectorExtension extends Extension
-    {
-        /**
-         * {@inheritDoc}
-         */
-        public function load(array $configs, ContainerBuilder $container)
-        {
-            $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-            // ...
-            $loader->load('parameters.yml');
-        }
-    }
-
+To do so, add the following lines in the ``parameters.yml`` of your custom installer.
 
 .. code:: yml
 
     parameters:
         pim_installer.fixture_loader.job_loader.config_file: 'PimExcelInitBundle/Resources/config/fixtures_jobs.yml'
+
+And for Enterprise Edition:
+
+.. code:: yml
+
+    parameters:
+        pim_installer.fixture_loader.job_loader.config_file: 'PimExcelInitBundle/Resources/config/fixtures_jobs_ee.yml'
 
 
 Define the data used by the installer :
@@ -137,4 +105,4 @@ Define the data used by the installer :
     # app/config/parameters.yml
     parameters:
         ...
-        installer_data: 'AcmeDemoBundle:minimal'
+        installer_data: 'PimInitInstallerBundle:minimal_EE'

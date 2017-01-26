@@ -1,8 +1,8 @@
 What is Akeneo Excel Connector Bundle?
 ======================================
 
-.. figure:: pictures/akeneo_excel.png
-   :alt: Logo ExcelConnector
+.. figure:: pictures/bundle_icon.jpg
+   :alt: Logo ExcelInitConnector
 
 This bundle adds support of Excel XSLX files as a source for initialization of catalog structure
 for `Akeneo PIM <https://github.com/akeneo/pim-community-standard>`__.

@@ -1,15 +1,15 @@
 parameters:
 
 services:
-    pim_excel_installer.step.init.attribute_groups:
+    pim_excel_installer.step.init.currencies:
         class: '%pim_connector.step.item_step.class%'
         arguments:
-            - 'import_attribute_groups'
+            - 'import_channels'
             - '@event_dispatcher'
             - '@akeneo_batch.job_repository'
-            - '@pim_excel_installer.reader.xls_init.attribute_group'
-            - '@pim_connector.processor.denormalization.attribute_group'
-            - '@pim_connector.writer.database.attribute_group'
+            - '@pim_excel_installer.reader.xls_init.currencies'
+            - '@pim_connector.processor.denormalization.currency'
+            - '@pim_connector.writer.database.currency'
 
     pim_excel_installer.step.init.categories:
         class: '%pim_connector.step.item_step.class%'
@@ -31,6 +31,46 @@ services:
             - '@pim_excel_installer.reader.xls_init.channel'
             - '@pim_connector.processor.denormalization.channel'
             - '@pim_connector.writer.database.channel'
+
+    pim_excel_installer.step.init.user_groups:
+        class: '%pim_connector.step.item_step.class%'
+        arguments:
+            - 'import_user_groups'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            - '@pim_excel_installer.reader.xls_init.user_groups'
+            - '@pim_connector.processor.denormalization.user_group'
+            - '@pim_connector.writer.database.user_group'
+
+    pim_excel_installer.step.init.user_roles:
+        class: '%pim_connector.step.item_step.class%'
+        arguments:
+            - 'import_user_roles'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            - '@pim_excel_installer.reader.xls_init.user_roles'
+            - '@pim_connector.processor.denormalization.user_role'
+            - '@pim_connector.writer.database.user_role'
+
+    pim_excel_installer.step.init.users:
+        class: '%pim_connector.step.item_step.class%'
+        arguments:
+            - 'import_users'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            - '@pim_excel_installer.reader.xls_init.users'
+            - '@pim_connector.processor.denormalization.user'
+            - '@pim_connector.writer.database.user'
+
+    pim_excel_installer.step.init.attribute_groups:
+        class: '%pim_connector.step.item_step.class%'
+        arguments:
+            - 'import_attribute_groups'
+            - '@event_dispatcher'
+            - '@akeneo_batch.job_repository'
+            - '@pim_excel_installer.reader.xls_init.attribute_group'
+            - '@pim_connector.processor.denormalization.attribute_group'
+            - '@pim_connector.writer.database.attribute_group'
 
     pim_excel_installer.step.init.group_types:
         class: '%pim_connector.step.item_step.class%'

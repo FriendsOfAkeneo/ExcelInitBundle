@@ -7,7 +7,7 @@ see `channels in the user guide <http://www.akeneo.com/doc/user-guide/key-concep
 Channel code
 ------------
 
-Channel code must be only composed of letters, numbers, spaces and underscores. No other character will be accepted.
+Channel code must be only composed of letters, numbers and underscores. No other character will be accepted.
 
 Channel label
 -------------

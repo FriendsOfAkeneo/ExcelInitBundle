@@ -71,3 +71,12 @@ jobs:
             filePath:     /tmp/products_export_grid_context_%locale%_%scope%_%datetime%.xlsx
             linesPerFile: 10000
             with_media:   true
+
+    xlsx_init_import:
+        connector: Akeneo Excel Initialization
+        alias:     xlsx_init_import
+        label:     Excel initialization
+        type:      import
+        configuration:
+            filePath:      /tmp/init.xlsx
+            uploadAllowed: true
