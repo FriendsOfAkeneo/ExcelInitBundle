@@ -50,6 +50,9 @@ class InitFileIterator extends FileIterator
         }
 
         $data = $this->trimRight($data);
+        if (count($data) ===0) {
+            return null;
+        }
 
         return $data;
     }
