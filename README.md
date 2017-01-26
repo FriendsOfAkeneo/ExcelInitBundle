@@ -13,6 +13,7 @@ This bundle adds support of Excel XSLX files as a source for initializing catalo
 | ExcelInitBundle | Akeneo PIM Community Edition |
 |:---------------:|:----------------------------:|
 | v1.0.*          | v1.6.*                       |
+| v1.1.*          | v1.6.*                       |
 
 ## Installation
 
