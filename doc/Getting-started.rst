@@ -11,7 +11,7 @@ You can create your own InstallerBundle by following the instructions from the d
 https://docs.akeneo.com/1.6/cookbook/setup_data/customize_dataset.html
 
 This extension is also provided with an example of custom installer bundle and you can copy-paste all
-the `PimInitInstaller <Akeneo>`__ folder in your `src` folder.
+the `Akeneo <Akeneo>`__ folder in your `src` folder.
 
 
 Copy the fixtures
@@ -32,7 +32,7 @@ CE edition
 +========================+=========================================================================+
 | **init.xslx**          | Contains the whole Catalog description, see init.xslx structure below   |
 +------------------------+-------------------------------------------------------------------------+
-| **locales.csv**        | Defines the used locales and their currency                              |
+| **locales.csv**        | Defines the used locales and their currency                             |
 +------------------------+-------------------------------------------------------------------------+
 
 EE edition (incl. CE files)
