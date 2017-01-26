@@ -12,7 +12,7 @@ Option code
 -----------
 
 Specify here a code for your attribute option.
-Attribute option codes must be only composed of letters, numbers, spaces and underscores.
+Attribute option codes must be only composed of letters, numbers and underscores.
 No other character will be accepted.
 
 Examples: ``blue``, ``XL``, ``silk``.

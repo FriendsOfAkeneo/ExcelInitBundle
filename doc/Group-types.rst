@@ -7,7 +7,7 @@ and what group types are.
 code
 ----
 
-Attribute code must be only composed of letters, numbers, spaces and underscores. No other character will be accepted.
+Attribute code must be only composed of letters, numbers and underscores. No other character will be accepted.
 
 variant
 -------

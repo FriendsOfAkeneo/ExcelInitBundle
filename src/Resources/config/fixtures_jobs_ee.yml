@@ -18,7 +18,7 @@ jobs:
             filePath: jobs.yml
 
     fixtures_xlsx_init_import:
-        order: 30
+        order: 25
         connector: Akeneo Excel Initialization
         alias:     excel_init_fixtures
         label:     Excel initialisation

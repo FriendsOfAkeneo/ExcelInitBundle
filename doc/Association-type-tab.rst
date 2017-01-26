@@ -7,7 +7,7 @@ Association type code
 ---------------------
 
 Specify here a code for your association type.
-Association type code must be only composed of letters, numbers, spaces and underscores.
+Association type code must be only composed of letters, numbers and underscores.
 No other character will be accepted.
 
 Example: ``X_SELL``, ``UPSELL``, ``SUBSTITUTION``, ``PACK``.

@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/akeneo/ExcelInitBundle.svg?branch=master)](https://travis-ci.org/akeneo/ExcelInitBundle)
 
-![alt text](./doc/pictures/akeneo_excel.png "")
+![alt text](./doc/pictures/bundle_icon.jpg "")
 
 This bundle adds support of Excel XSLX files as a source for initializing catalog structure for [Akeneo PIM](https://github.com/akeneo/pim-community-standard).
 

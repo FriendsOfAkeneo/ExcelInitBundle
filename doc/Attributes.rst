@@ -4,12 +4,6 @@ Attributes tab
 In this tab you will define every attribute depending wether they belong to one or more families.
 You have to define all attributes in this worksheet before defining the families.
 
-*Deprecated*: If the attribute is only part of one family, consider defining it directly in the corresponding family tab.
-
-
-See `family tab section <https://github.com/akeneo/ExcelInitBundle/wiki/Families>`__
-to know how to do this.
-
 For more details about the keys concept of attribute, see `attribute in the user guide
 <http://www.akeneo.com/doc/user-guide/key-concepts/attributes/>`__.
 
@@ -19,7 +13,7 @@ General properties
 Attribute code
 ~~~~~~~~~~~~~~
 
-Attribute code must be only composed of letters, numbers, spaces and underscores. No other character will be accepted.
+Attribute code must be only composed of letters, numbers and underscores. No other character will be accepted.
 
 Label columns
 ~~~~~~~~~~~~~

@@ -7,7 +7,7 @@ Group code
 ----------
 
 Specify here a code for your attribute group.
-Attribute group code must be only composed of letters, numbers, spaces and underscores.
+Attribute group code must be only composed of letters, numbers and underscores.
 No other character will be accepted.
 
 **Examples:** ``measures``, ``sizes`` and ``technical``.
