@@ -73,6 +73,9 @@ class InitFamilyFileIterator extends InitFileIterator
             }
 
             if ($index >= (int) $this->options['attribute_data_row']) {
+                if (count($row) === 0) {
+                    continue;
+                }
                 $code = $row[$codeColumn];
                 if ($code === '') {
                     continue;
