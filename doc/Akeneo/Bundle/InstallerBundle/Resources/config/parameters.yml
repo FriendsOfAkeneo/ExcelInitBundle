@@ -1,3 +1,5 @@
 parameters:
-    pim_installer.fixture_loader.job_loader.config_file: 'PimExcelInitBundle/Resources/config/fixtures_jobs_ee.yml'
-    installer_data: 'PimInitInstallerBundle:minimal_EE'
+    pim_installer.fixture_loader.job_loader.config_file: 'PimExcelInitBundle/Resources/config/fixtures_jobs.yml'
+    # you can also use EE fixtures
+    # pim_installer.fixture_loader.job_loader.config_file: 'PimExcelInitBundle/Resources/config/fixtures_jobs_ee.yml'
+    installer_data: 'PimInitInstallerBundle:my_dataset'
