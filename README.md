@@ -6,7 +6,7 @@
 
 This bundle adds support of Excel XSLX files as a source for initializing catalog structure for [Akeneo PIM](https://github.com/akeneo/pim-community-standard).
 
-This extension supersede the [ExcelConnectorBundle](https://github.com/akeneo-labs/ExcelConnectorBundle) for Akeneo PIM >= 1.6.
+This extension replaces the [ExcelConnectorBundle](https://github.com/akeneo-labs/ExcelConnectorBundle) for Akeneo PIM >= 1.6.
 Be carefull to use the new `init.xlsx` file of this bundle as there are some structure modifications.
 
 **Note**: this bundle is not compatible with Excel 2003 xls files.
