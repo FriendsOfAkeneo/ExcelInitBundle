@@ -13,3 +13,5 @@ variant
 -------
 
 Indicate wether or not the group type is variant.
+
+**Note**: the header of this column has been modified and is not compatible with the `init.xlsx` of the ExcelConnectorBundle.
