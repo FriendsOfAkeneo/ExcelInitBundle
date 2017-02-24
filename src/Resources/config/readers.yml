@@ -128,7 +128,7 @@ services:
             - family_data_row:    2
               family_code_column: 1
               family_labels_locales_row: 1
-              family_labels_first_column: 3
+              family_labels_first_column: 4
               channel_label_row:   4
               attribute_data_row: 6
               include_worksheets: [ '/^family/' ]

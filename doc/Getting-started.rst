@@ -4,25 +4,26 @@ Getting started
 Initializing the PIM with a XLSX file
 -------------------------------------
 
-Create an InstallerBundle
-~~~~~~~~~~~~~~~~~~~~~~~~~
+Create a fixtures directory
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-You can create your own InstallerBundle by following the instructions from the documentation :
-https://docs.akeneo.com/1.6/cookbook/setup_data/customize_dataset.html
+You have to create a directory containing all the installer fixtures.
 
-This extension is also provided with an example of custom installer bundle and you can copy-paste all
-the `Akeneo <Akeneo>`__ folder in your `src` folder.
+.. code:: bash
 
+    mkdir /home/akeneo/installer/fixtures/my_company
 
 Copy the fixtures
 ~~~~~~~~~~~~~~~~~
 
 All minimal fixtures are located in the **src/Resources/fixtures/minimal** folder inside the **ExcelInitBundle**.
 
+For an Enterprise edition, the fixtures are located in the **src/Resources/fixtures/minimal_EE** folder.
+
 All these fixtures can't be set in the init.xslx files.
 Be sure to use the very same name/code in both the init.xslx files and the YML files.
 
-Place them in the same directory inside your InstallerBundle. Here is a description of what each files contains:
+Place them in your fixtures directory. Here is a description of what each files contains:
 
 CE edition
 ^^^^^^^^^^
@@ -96,13 +97,14 @@ And for Enterprise Edition:
     parameters:
         pim_installer.fixture_loader.job_loader.config_file: 'PimExcelInitBundle/Resources/config/fixtures_jobs_ee.yml'
 
-
 Define the data used by the installer :
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Here you will tell the installer to use the fixtures in your own fixtures folder:
 
 .. code:: yml
 
     # app/config/parameters.yml
     parameters:
         ...
-        installer_data: 'PimInitInstallerBundle:minimal_EE'
+        installer_data: '/home/akeneo/installer/fixtures/my_company'
