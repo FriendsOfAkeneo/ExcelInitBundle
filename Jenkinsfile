@@ -139,7 +139,7 @@ def runIntegrationTest(version) {
         deleteDir()
         docker.image("mysql:5.5").withRun("--name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=akeneo_pim -e MYSQL_PASSWORD=akeneo_pim -e MYSQL_DATABASE=akeneo_pim") {
             docker.image("carcel/php:${version}").inside("--link mysql:mysql -v /home/akeneo/.composer:/home/akeneo/.composer -e COMPOSER_HOME=/home/akeneo/.composer") {
-                unstash "pim_community_dev"
+                unstash "pim_community_dev_full"
 
                 if (version != "5.6") {
                     sh "composer require --no-update alcaeus/mongo-php-adapter"
@@ -149,6 +149,10 @@ def runIntegrationTest(version) {
                 sh "composer update --ignore-platform-reqs --optimize-autoloader --no-interaction --no-progress --prefer-dist"
                 sh "cp app/config/parameters.yml.dist app/config/parameters_test.yml"
                 sh "sed -i 's/database_host:     localhost/database_host:     mysql/' app/config/parameters_test.yml"
+                sh "echo '' >> app/config/parameters_test.yml"
+                sh "echo '    pim_installer.fixture_loader.job_loader.config_file: PimExcelInitBundle/Resources/config/fixtures_jobs.yml' >> app/config/parameters_test.yml"
+                sh "echo '    installer_data: PimExcelInitBundle:minimal' >> app/config/parameters_test.yml"
+                sh "sed -i 's#// your app bundles should be registered here#\\0\\nnew Pim\\\\Bundle\\\\ExcelInitBundle\\\\PimExcelInitBundle(),#' app/AppKernel.php"
                 sh "./app/console --env=test pim:install --force"
             }
         }
