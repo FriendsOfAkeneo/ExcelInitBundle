@@ -108,3 +108,13 @@ Here you will tell the installer to use the fixtures in your own fixtures folder
     parameters:
         ...
         installer_data: '/home/akeneo/installer/fixtures/my_company'
+
+
+Alternatively, if you use a custom installer bundle, you can alos use the bundle notation:
+
+.. code:: yml
+
+    # app/config/parameters.yml
+    parameters:
+        ...
+        installer_data: 'YourCustomeInstallerBundle:minimal'
