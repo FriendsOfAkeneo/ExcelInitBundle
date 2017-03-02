@@ -23,7 +23,7 @@ Be carefull to use the new `init.xlsx` file of this bundle as there are some str
 From your application root:
 
 ```bash
-    php composer.phar require --prefer-dist akeneo/excel-init-bundle:1.0.*
+    php composer.phar require --prefer-dist akeneo/excel-init-bundle:1.1.*
 ```
 
 Enable the bundle in the `app/AppKernel.php` file in the `registerProjectBundles()` method:
@@ -54,8 +54,9 @@ See [doc folder](./doc/Home.rst) for more details on how to set your catalog str
 ### Supported file
 
 Input file must follow [init.xslx](./src/Resources/fixtures/minimal/init.xlsx) structure.
-Note that the file must be opened with Excel.
-LibreOffice/OpenOffice are not in compliance with validations data that are available in the spreadsheet.
+
+Note that the file should be opened with Excel.
+LibreOffice/OpenOffice are not fully in compliance with validations data that are available in the spreadsheet.
 
 ## Troubleshooting
 
