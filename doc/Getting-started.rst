@@ -110,7 +110,7 @@ Here you will tell the installer to use the fixtures in your own fixtures folder
         installer_data: '/home/akeneo/installer/fixtures/my_company'
 
 
-Alternatively, if you use a custom installer bundle, you can alos use the bundle notation:
+Alternatively, if you use a custom installer bundle, you can also use the bundle notation to locate the fixtures directory:
 
 .. code:: yml
 
