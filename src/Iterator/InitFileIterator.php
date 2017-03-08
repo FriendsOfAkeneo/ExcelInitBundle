@@ -4,7 +4,7 @@ namespace Pim\Bundle\ExcelInitBundle\Iterator;
 
 use Box\Spout\Reader\XLSX\Sheet;
 use Box\Spout\Reader\XLSX\SheetIterator;
-use Pim\Component\Connector\Reader\File\FileIterator;
+use Pim\Component\Connector\Reader\File\FlatFileIterator;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
@@ -15,7 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  * @copyright 2013 Akeneo SAS (http://www.akeneo.com)
  * @license   http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)
  */
-class InitFileIterator extends FileIterator
+class InitFileIterator extends FlatFileIterator
 {
     /** @var SheetIterator */
     protected $worksheetIterator;

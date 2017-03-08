@@ -17,13 +17,14 @@ Be carefull to use the new `init.xlsx` file of this bundle as there are some str
 |:---------------:|:----------------------------:|
 | v1.0.*          | v1.6.*                       |
 | v1.1.*          | v1.6.*                       |
+| v1.2.*          | v1.7.*                       |
 
 ## Installation
 
 From your application root:
 
 ```bash
-    php composer.phar require --prefer-dist akeneo/excel-init-bundle:1.1.*
+    php composer.phar require --prefer-dist akeneo/excel-init-bundle:1.2.*
 ```
 
 Enable the bundle in the `app/AppKernel.php` file in the `registerProjectBundles()` method:

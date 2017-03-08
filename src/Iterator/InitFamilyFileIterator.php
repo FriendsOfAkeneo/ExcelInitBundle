@@ -65,7 +65,7 @@ class InitFamilyFileIterator extends InitFileIterator
                 $channelLabels = $row;
                 $firstChannelColumn = 2;
                 array_splice($channelLabels, 0, $firstChannelColumn);
-                $data['requirements'] = array_fill_keys($channelLabels, []);
+                $data['attribute_requirements'] = array_fill_keys($channelLabels, []);
             }
 
             $codeColumn = 0;
@@ -87,7 +87,7 @@ class InitFamilyFileIterator extends InitFileIterator
                 $channelValues = array_slice($row, $firstChannelColumn);
                 foreach ($channelLabels as $channelIndex => $channel) {
                     if (isset($channelValues[$channelIndex]) && '1' === trim($channelValues[$channelIndex])) {
-                        $data['requirements'][$channel][] = $code;
+                        $data['attribute_requirements'][$channel][] = $code;
                     }
                 }
             }

@@ -32,13 +32,13 @@ class Attribute extends PimAttributeConverter
             return $convertedItem;
         }
 
-        $convertedItem = parent::convertFields($field, $booleanFields, $data, $convertedItem);
-
         if ('type' === $field) {
             $pimType = $this->attributeTypesMapper->getMappedValue($data);
             if (null !== $pimType) {
-                $convertedItem['attribute_type'] = $pimType;
+                $convertedItem['type'] = $pimType;
             }
+        } else {
+            $convertedItem = parent::convertFields($field, $booleanFields, $data, $convertedItem);
         }
 
         return $convertedItem;
