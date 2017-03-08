@@ -25,6 +25,14 @@ Be sure to use the very same name/code in both the init.xslx files and the YML f
 
 Place them in your fixtures directory. Here is a description of what each files contains:
 
+.. code:: bash
+
+    # For CE
+    cp -R /home/akeneo/vendor/akeneo/excel-init-bundle/src/Resources/fixtures/minimal/* /home/akeneo/installer/fixtures/my_company
+
+    # For EE
+    cp -R /home/akeneo/vendor/akeneo/excel-init-bundle/src/Resources/fixtures/minimal_EE/* /home/akeneo/installer/fixtures/my_company
+
 CE edition
 ^^^^^^^^^^
 
