@@ -118,7 +118,7 @@ def runIntegrationTest(version) {
                     sh "composer require --no-update alcaeus/mongo-php-adapter"
                 }
 
-                sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:migration-1.7-dev"
+                sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle"
                 sh "composer update --ignore-platform-reqs --optimize-autoloader --no-interaction --no-progress --prefer-dist"
 
                 dir("vendor/akeneo/excel-init-bundle") {
@@ -149,7 +149,7 @@ def runIntegrationTestEE(version) {
                     sh "composer require --no-update alcaeus/mongo-php-adapter"
                 }
 
-                sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:migration-1.7-dev"
+                sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle"
                 sh "composer update --ignore-platform-reqs --optimize-autoloader --no-interaction --no-progress --prefer-dist"
 
                 dir("vendor/akeneo/excel-init-bundle") {
