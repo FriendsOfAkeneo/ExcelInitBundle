@@ -30,13 +30,13 @@ stage("Checkout") {
         stash "excel_init"
 
         checkout([$class: 'GitSCM',
-             branches: [[name: '${Globals.pimVersion}']],
+             branches: [[name: "${Globals.pimVersion}"]],
              userRemoteConfigs: [[credentialsId: 'github-credentials', url: 'https://github.com/akeneo/pim-community-standard.git']]
         ])
         stash "pim_community"
 
        checkout([$class: 'GitSCM',
-         branches: [[name: '${Globals.pimVersion}']],
+         branches: [[name: "${Globals.pimVersion}"]],
          userRemoteConfigs: [[credentialsId: 'github-credentials', url: 'https://github.com/akeneo/pim-enterprise-standard.git']]
        ])
        stash "pim_enterprise"
