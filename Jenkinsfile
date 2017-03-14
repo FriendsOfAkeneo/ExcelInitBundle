@@ -8,7 +8,7 @@ def launchBehatTests = "yes"
 
 class Globals {
     static pimVersion = "1.7"
-    static extensionBranch = "dev-prepare-1.2"
+    static extensionBranch = "dev-master"
 }
 
 stage("Checkout") {
