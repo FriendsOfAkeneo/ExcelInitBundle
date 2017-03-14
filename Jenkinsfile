@@ -5,7 +5,11 @@ def mysqlVersion = "5.5"
 def launchUnitTests = "yes"
 def launchIntegrationTests = "yes"
 def launchBehatTests = "yes"
-def commit = "${env.GIT_COMMIT}"
+
+class Globals {
+    static pimVersion = "1.7"
+    static extensionBranch = "dev-prepare-1.2"
+}
 
 stage("Checkout") {
     milestone 1
@@ -26,13 +30,13 @@ stage("Checkout") {
         stash "excel_init"
 
         checkout([$class: 'GitSCM',
-             branches: [[name: '1.7']],
+             branches: [[name: '${Globals.pimVersion}']],
              userRemoteConfigs: [[credentialsId: 'github-credentials', url: 'https://github.com/akeneo/pim-community-standard.git']]
         ])
         stash "pim_community"
 
        checkout([$class: 'GitSCM',
-         branches: [[name: '1.7']],
+         branches: [[name: '${Globals.pimVersion}']],
          userRemoteConfigs: [[credentialsId: 'github-credentials', url: 'https://github.com/akeneo/pim-enterprise-standard.git']]
        ])
        stash "pim_enterprise"
@@ -116,7 +120,7 @@ def runIntegrationTest(version) {
                     sh "composer require --no-update alcaeus/mongo-php-adapter"
                 }
 
-                sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle"
+                sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
                 sh "composer update --ignore-platform-reqs --optimize-autoloader --no-interaction --no-progress --prefer-dist"
 
                 dir("vendor/akeneo/excel-init-bundle") {
@@ -148,7 +152,7 @@ def runIntegrationTestEE(version) {
                     sh "composer require --no-update alcaeus/mongo-php-adapter"
                 }
 
-                sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle"
+                sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
                 sh "composer update --ignore-platform-reqs --optimize-autoloader --no-interaction --no-progress --prefer-dist"
 
                 dir("vendor/akeneo/excel-init-bundle") {
