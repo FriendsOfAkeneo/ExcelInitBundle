@@ -44,11 +44,9 @@ if (launchUnitTests.equals("yes")) {
         def tasks = [:]
 
         tasks["phpspec-5.6"] = {runPhpSpecTest("5.6")}
-        tasks["phpspec-7.0"] = {runPhpSpecTest("7.0")}
         tasks["phpspec-7.1"] = {runPhpSpecTest("7.1")}
 
         tasks["php-cs-fixer-5.6"] = {runPhpCsFixerTest("5.6")}
-        tasks["php-cs-fixer-7.0"] = {runPhpCsFixerTest("7.0")}
         tasks["php-cs-fixer-7.1"] = {runPhpCsFixerTest("7.1")}
 
         parallel tasks
@@ -60,10 +58,10 @@ if (launchIntegrationTests.equals("yes")) {
         def tasks = [:]
 
         tasks["phpunit-5.6-ce"] = {runIntegrationTest("5.6")}
-        tasks["phpunit-7.0-ce"] = {runIntegrationTest("7.0")}
+        tasks["phpunit-7.1-ce"] = {runIntegrationTest("7.1")}
 
         tasks["phpunit-5.6-ee"] = {runIntegrationTestEE("5.6")}
-        tasks["phpunit-7.0-ee"] = {runIntegrationTestEE("7.0")}
+        tasks["phpunit-7.1-ee"] = {runIntegrationTestEE("7.1")}
 
         parallel tasks
     }
@@ -122,6 +120,7 @@ def runIntegrationTest(version) {
                 sh "composer update --ignore-platform-reqs --optimize-autoloader --no-interaction --no-progress --prefer-dist"
 
                 dir("vendor/akeneo/excel-init-bundle") {
+                    deleteDir()
                     unstash "excel_init"
                 }
                 sh "composer dump-autoload -o"
