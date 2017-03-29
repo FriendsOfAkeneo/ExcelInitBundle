@@ -198,7 +198,6 @@ jobs:
         alias:     add_tags_to_assets
         label:     Add tags to assets
         type:      mass_edit
-
     xlsx_init_import:
         connector: Akeneo Excel Initialization
         alias:     xlsx_init_import
@@ -207,3 +206,13 @@ jobs:
         configuration:
             filePath:      /tmp/init.xlsx
             uploadAllowed: true
+    project_calculation:
+        connector: teamwork assistant
+        alias:     project_calculation
+        label:     Project calculation
+        type: project_calculation
+    refresh_project_completeness_calculation:
+        connector: teamwork assistant
+        alias:     refresh_project_completeness_calculation
+        label:     Refresh project completeness
+        type:      refresh_project_completeness_calculation
