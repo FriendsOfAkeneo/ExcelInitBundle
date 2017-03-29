@@ -9,7 +9,7 @@ This bundle adds support of Excel XSLX files as a source for initializing catalo
 This extension replaces the [ExcelConnectorBundle](https://github.com/akeneo-labs/ExcelConnectorBundle) for Akeneo PIM >= 1.6.
 Be carefull to use the new `init.xlsx` file of this bundle as there are some structure modifications.
 
-**Note**: this bundle is not compatible with Excel 2003 xls files.
+**Note**: this bundle is not compatible with Excel 2003 xls files. Editing the XLSX file with LibreOffice/OpenOffice is also not supported as it can lead to unwanted behavior.
 
 ## Requirements
 
@@ -61,7 +61,7 @@ LibreOffice/OpenOffice are not fully in compliance with validations data that ar
 
 ## Troubleshooting
 
-###The import fails when importing families
+### The import fails when importing families
 
 Check that your channels names are correct in both family and channel tabs.
 You might have a typo in the channels tab and not in the family tab.
