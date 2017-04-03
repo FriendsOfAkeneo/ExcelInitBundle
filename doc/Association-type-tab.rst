@@ -32,4 +32,4 @@ The following example is showing this hidden line.
 | X_SELL                        | Cross sell   | Venta cruzada| Vente croisée |
 +-------------------------------+--------------+--------------+---------------+
 
-.. _user guide: http://www.akeneo.com/doc/user-guide/key-concepts/association/
+.. _user guide: https://www.akeneo.com/wp-content/uploads/2017/03/EN-Catalog-Setting-User-Guide-PIM-CE-EE-1.7.pdf#page=36
