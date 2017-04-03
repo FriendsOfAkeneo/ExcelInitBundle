@@ -2,7 +2,7 @@ Channels tab
 ============
 
 In this tab you can define all the channels you are using. For more details about the key concept of channels,
-see `channels in the user guide <http://www.akeneo.com/doc/user-guide/key-concepts/channels/>`__.
+see `channels in the user guide <https://www.akeneo.com/wp-content/uploads/2017/03/EN-Catalog-Setting-User-Guide-PIM-CE-EE-1.7.pdf#page=42>`__.
 
 Channel code
 ------------
