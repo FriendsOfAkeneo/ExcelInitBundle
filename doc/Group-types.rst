@@ -1,7 +1,7 @@
 Group types
 ===========
 
-See `userguide <http://www.akeneo.com/doc/user-guide/key-concepts/group/>`__ to know more about groups
+See `userguide <https://www.akeneo.com/wp-content/uploads/2017/03/EN-Catalog-Setting-User-Guide-PIM-CE-EE-1.7.pdf#page=32>`__ to know more about groups
 and what group types are.
 
 code
