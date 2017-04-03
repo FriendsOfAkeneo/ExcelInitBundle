@@ -5,7 +5,7 @@ In this tab you will define every attribute depending wether they belong to one 
 You have to define all attributes in this worksheet before defining the families.
 
 For more details about the keys concept of attribute, see `attribute in the user guide
-<http://www.akeneo.com/doc/user-guide/key-concepts/attributes/>`__.
+<https://www.akeneo.com/wp-content/uploads/2017/03/EN-Catalog-Setting-User-Guide-PIM-CE-EE-1.7.pdf#page=5>`__.
 
 General properties
 ------------------
