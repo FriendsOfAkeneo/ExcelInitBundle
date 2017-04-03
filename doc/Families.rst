@@ -37,6 +37,6 @@ Completeness channel\_code
 
 Define here if the attribute is part of the completeness calculation for the channel\_code channel.
 Channels are defined in the `channel tab <https://github.com/akeneo/ExcelInitBundle/wiki/Channels-tab>`__.
-Learn more about completeness in the `user guide <http://www.akeneo.com/doc/user-guide/key-concepts/completeness/>`__.
+Learn more about completeness in the `user guide <https://www.akeneo.com/wp-content/uploads/2017/03/EN-Catalog-Setting-User-Guide-PIM-CE-EE-1.7.pdf#page=27>`__.
 
 You will have to add as many Completeness column as you have channels.
