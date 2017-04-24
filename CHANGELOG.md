@@ -1,3 +1,9 @@
+# 1.2.3
+
+## Bugs fixes
+
+- PR #43: Fix missing currencies
+
 # 1.2.1
 
 ## Improvements
