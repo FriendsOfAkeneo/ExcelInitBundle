@@ -132,4 +132,3 @@ services:
               channel_label_row:  4
               attribute_data_row: 6
               include_worksheets: [ '/^family/' ]
-
