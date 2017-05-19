@@ -1,3 +1,11 @@
+# 1.2.4
+## Bugs fixes
+- EX-26: Boolean attributes must be explicitly set to 0
+
+## Improvements
+- EX-27: Add read only column for EE attributes
+- Add categories in fixtures
+
 # 1.2.3
 
 ## Bugs fixes
