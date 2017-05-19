@@ -28,7 +28,7 @@ class Attribute extends PimAttributeConverter
         if (empty($field) || 'use_as_label' === $field) {
             return $convertedItem;
         }
-        if (empty($data)) {
+        if (0 !== $data && empty($data)) {
             return $convertedItem;
         }
 
