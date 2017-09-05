@@ -29,6 +29,5 @@
     },
     "autoload": {
         "psr-4": { "Pim\\Bundle\\ExcelInitBundle\\": "src/" }
-    },
-    "minimum-stability": "stable"
+    }
 }
