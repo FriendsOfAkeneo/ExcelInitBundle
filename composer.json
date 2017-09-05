@@ -14,8 +14,7 @@
     "repositories": [
         {
             "type": "vcs",
-            "url": "https://github.com/akeneo/pim-community-dev.git",
-            "branch": "master"
+            "url": "https://github.com/akeneo/pim-community-dev.git"
         }
     ],
     "require": {
@@ -30,6 +29,5 @@
     },
     "autoload": {
         "psr-4": { "Pim\\Bundle\\ExcelInitBundle\\": "src/" }
-    },
-    "minimum-stability": "stable"
+    }
 }
