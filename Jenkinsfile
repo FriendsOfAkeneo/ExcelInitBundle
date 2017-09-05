@@ -48,10 +48,7 @@ if (launchUnitTests.equals("yes")) {
         def tasks = [:]
 
         tasks["phpspec-5.6"] = {runPhpSpecTest("5.6")}
-        tasks["phpspec-7.1"] = {runPhpSpecTest("7.1")}
-
         tasks["php-cs-fixer-5.6"] = {runPhpCsFixerTest("5.6")}
-        tasks["php-cs-fixer-7.1"] = {runPhpCsFixerTest("7.1")}
 
         parallel tasks
     }
@@ -62,10 +59,7 @@ if (launchIntegrationTests.equals("yes")) {
         def tasks = [:]
 
         tasks["phpunit-5.6-ce"] = {runIntegrationTest("5.6")}
-        tasks["phpunit-7.1-ce"] = {runIntegrationTest("7.1")}
-
         tasks["phpunit-5.6-ee"] = {runIntegrationTestEE("5.6")}
-        tasks["phpunit-7.1-ee"] = {runIntegrationTestEE("7.1")}
 
         parallel tasks
     }
@@ -78,7 +72,7 @@ def runPhpSpecTest(version) {
             docker.image("carcel/php:${version}").inside("-v /home/akeneo/.composer:/home/akeneo/.composer -e COMPOSER_HOME=/home/akeneo/.composer") {
                 unstash "excel_init"
 
-                sh "composer install --ignore-platform-reqs --optimize-autoloader --no-interaction --no-progress --prefer-dist"
+                sh "composer install --optimize-autoloader --no-interaction --no-progress --prefer-dist"
                 sh "mkdir -p app/build/logs/"
                 sh "./bin/phpspec run --no-interaction --format=junit > app/build/logs/phpspec.xml"
             }
@@ -97,7 +91,7 @@ def runPhpCsFixerTest(version) {
             docker.image("carcel/php:${version}").inside("-v /home/akeneo/.composer:/home/akeneo/.composer -e COMPOSER_HOME=/home/akeneo/.composer") {
                 unstash "excel_init"
 
-                sh "composer install --ignore-platform-reqs --optimize-autoloader --no-interaction --no-progress --prefer-dist"
+                sh "composer install --optimize-autoloader --no-interaction --no-progress --prefer-dist"
                 sh "mkdir -p app/build/logs/"
                 sh "./bin/php-cs-fixer fix --diff --format=junit --config=.php_cs.php > app/build/logs/phpcs.xml"
             }
@@ -121,7 +115,7 @@ def runIntegrationTest(version) {
                 }
 
                 sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
-                sh "composer update --ignore-platform-reqs --optimize-autoloader --no-interaction --no-progress --prefer-dist"
+                sh "composer update --optimize-autoloader --no-interaction --no-progress --prefer-dist"
 
                 dir("vendor/akeneo/excel-init-bundle") {
                     deleteDir()
@@ -153,7 +147,7 @@ def runIntegrationTestEE(version) {
                 }
 
                 sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
-                sh "composer update --ignore-platform-reqs --optimize-autoloader --no-interaction --no-progress --prefer-dist"
+                sh "composer update --optimize-autoloader --no-interaction --no-progress --prefer-dist"
 
                 dir("vendor/akeneo/excel-init-bundle") {
                     unstash "excel_init"
