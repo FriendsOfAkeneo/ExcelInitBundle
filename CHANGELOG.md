@@ -1,3 +1,7 @@
+# 1.2.5
+## Bugs fixes
+- GITHUB-19: update measures in init.xlsx
+
 # 1.2.4
 ## Bugs fixes
 - EX-26: Boolean attributes must be explicitly set to 0
