@@ -68,6 +68,7 @@ if (launchIntegrationTests.equals("yes")) {
 def runPhpSpecTest(version) {
     node('docker') {
         deleteDir()
+        cleanUpEnvironment()
         try {
             docker.image("carcel/php:${version}").inside("-v /home/akeneo/.composer:/home/akeneo/.composer -e COMPOSER_HOME=/home/akeneo/.composer") {
                 unstash "excel_init"
@@ -87,6 +88,7 @@ def runPhpSpecTest(version) {
 def runPhpCsFixerTest(version) {
     node('docker') {
         deleteDir()
+        cleanUpEnvironment()
         try {
             docker.image("carcel/php:${version}").inside("-v /home/akeneo/.composer:/home/akeneo/.composer -e COMPOSER_HOME=/home/akeneo/.composer") {
                 unstash "excel_init"
@@ -106,6 +108,7 @@ def runPhpCsFixerTest(version) {
 def runIntegrationTest(version) {
     node('docker') {
         deleteDir()
+        cleanUpEnvironment()
         docker.image("mysql:5.5").withRun("--name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=akeneo_pim -e MYSQL_PASSWORD=akeneo_pim -e MYSQL_DATABASE=akeneo_pim") {
             docker.image("carcel/php:${version}").inside("--link mysql:mysql -v /home/akeneo/.composer:/home/akeneo/.composer -e COMPOSER_HOME=/home/akeneo/.composer") {
                 unstash "pim_community"
@@ -138,6 +141,7 @@ def runIntegrationTest(version) {
 def runIntegrationTestEE(version) {
     node('docker') {
         deleteDir()
+        cleanUpEnvironment()
         docker.image("mysql:5.5").withRun("--name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=akeneo_pim -e MYSQL_PASSWORD=akeneo_pim -e MYSQL_DATABASE=akeneo_pim") {
             docker.image("carcel/php:${version}").inside("--link mysql:mysql -v /home/akeneo/.composer:/home/akeneo/.composer -e COMPOSER_HOME=/home/akeneo/.composer") {
                 unstash "pim_enterprise"
@@ -164,4 +168,13 @@ def runIntegrationTestEE(version) {
             }
         }
     }
+}
+
+def cleanUpEnvironment() {
+    deleteDir()
+    sh '''
+        docker ps -a -q | xargs -n 1 -P 8 -I {} docker rm -f {} > /dev/null
+        docker volume ls -q | xargs -n 1 -P 8 -I {} docker volume rm {} > /dev/null
+        docker network ls --filter name=akeneo -q | xargs -n 1 -P 8 -I {} docker network rm {} > /dev/null
+    '''
 }
