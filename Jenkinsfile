@@ -7,7 +7,7 @@ def launchIntegrationTests = "yes"
 def launchBehatTests = "yes"
 
 class Globals {
-    static pimVersion = "2.0"
+    static pimVersion = "2.0.x-dev"
     static extensionBranch = "dev-master"
 }
 
