@@ -2,7 +2,7 @@ version: '2'
 
 services:
   fpm:
-    image: akeneo/fpm:php-5.6
+    image: akeneo/fpm:php-7.1
     environment:
       COMPOSER_HOME: /home/docker/.composer
     user: docker
