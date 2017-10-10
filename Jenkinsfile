@@ -111,7 +111,7 @@ def runIntegrationTest(version) {
         cleanUpEnvironment()
         docker.image("elasticsearch:5.5").withRun("--name elasticsearch -e ES_JAVA_OPTS=\"-Xms256m -Xmx256m\"") {
             docker.image("mysql:5.7").withRun("--name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=akeneo_pim -e MYSQL_PASSWORD=akeneo_pim -e MYSQL_DATABASE=akeneo_pim --tmpfs=/var/lib/mysql/:rw,noexec,nosuid,size=1000m --tmpfs=/tmp/:rw,noexec,nosuid,size=300m") {
-                docker.image("akeneo/php:${phpVersion}").inside("--link mysql:mysql --link elasticsearch:elasticsearch") {
+                docker.image("akeneo/php:${version}").inside("--link mysql:mysql --link elasticsearch:elasticsearch") {
                     unstash "pim_community"
 
                     sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
@@ -142,7 +142,7 @@ def runIntegrationTestEE(version) {
         cleanUpEnvironment()
         docker.image("elasticsearch:5.5").withRun("--name elasticsearch -e ES_JAVA_OPTS=\"-Xms256m -Xmx256m\"") {
             docker.image("mysql:5.7").withRun("--name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=akeneo_pim -e MYSQL_PASSWORD=akeneo_pim -e MYSQL_DATABASE=akeneo_pim --tmpfs=/var/lib/mysql/:rw,noexec,nosuid,size=1000m --tmpfs=/tmp/:rw,noexec,nosuid,size=300m") {
-                docker.image("akeneo/php:${phpVersion}").inside("--link mysql:mysql --link elasticsearch:elasticsearch") {
+                docker.image("akeneo/php:${version}").inside("--link mysql:mysql --link elasticsearch:elasticsearch") {
                     unstash "pim_enterprise"
 
                     sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
