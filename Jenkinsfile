@@ -130,11 +130,15 @@ def runIntegrationTest(version) {
                     sh "composer dump-autoload -o"
 
                     sh "cp app/config/parameters.yml.dist app/config/parameters_test.yml"
-                    sh "sed -i 's/database_host:     localhost/database_host:     mysql/' app/config/parameters_test.yml"
+                    sh "sed -i 's/database_host:.*/database_host: mysql/' app/config/parameters_test.yml"
                     sh "echo '' >> app/config/parameters_test.yml"
                     sh "echo '    pim_installer.fixture_loader.job_loader.config_file: PimExcelInitBundle/Resources/config/fixtures_jobs.yml' >> app/config/parameters_test.yml"
                     sh "echo '    installer_data: PimExcelInitBundle:minimal' >> app/config/parameters_test.yml"
+                    sh "sed -i \"s#index_hosts: .*#index_hosts: 'elasticsearch:9200'#g\" app/config/parameters_test.yml"
                     sh "sed -i 's#// your app bundles should be registered here#\\0\\nnew Pim\\\\Bundle\\\\ExcelInitBundle\\\\PimExcelInitBundle(),#' app/AppKernel.php"
+                    
+                    sh "sleep 10"
+                    
                     sh "./bin/console --env=test pim:install --force"
                 }
             }
@@ -163,11 +167,15 @@ def runIntegrationTestEE(version) {
                     sh "composer dump-autoload -o"
 
                     sh "cp app/config/parameters.yml.dist app/config/parameters_test.yml"
-                    sh "sed -i 's/database_host:     localhost/database_host:     mysql/' app/config/parameters_test.yml"
+                    sh "sed -i 's/database_host:.*/database_host: mysql/' app/config/parameters_test.yml"
                     sh "echo '' >> app/config/parameters_test.yml"
                     sh "echo '    pim_installer.fixture_loader.job_loader.config_file: PimExcelInitBundle/Resources/config/fixtures_jobs_ee.yml' >> app/config/parameters_test.yml"
                     sh "echo '    installer_data: PimExcelInitBundle:minimal_EE' >> app/config/parameters_test.yml"
+                    sh "sed -i \"s#index_hosts: .*#index_hosts: 'elasticsearch:9200'#g\" app/config/parameters_test.yml"
                     sh "sed -i 's#// your app bundles should be registered here#\\0\\nnew Pim\\\\Bundle\\\\ExcelInitBundle\\\\PimExcelInitBundle(),#' app/AppKernel.php"
+                    
+                    sh "sleep 10"
+                    
                     sh "./bin/console --env=test pim:install --force"
                 }
             }
