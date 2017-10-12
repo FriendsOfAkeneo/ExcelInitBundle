@@ -129,7 +129,7 @@ def runIntegrationTest(version) {
                     sh "echo '    pim_installer.fixture_loader.job_loader.config_file: PimExcelInitBundle/Resources/config/fixtures_jobs.yml' >> app/config/parameters_test.yml"
                     sh "echo '    installer_data: PimExcelInitBundle:minimal' >> app/config/parameters_test.yml"
                     sh "sed -i 's#// your app bundles should be registered here#\\0\\nnew Pim\\\\Bundle\\\\ExcelInitBundle\\\\PimExcelInitBundle(),#' app/AppKernel.php"
-                    sh "./app/console --env=test pim:install --force"
+                    sh "./bin/console --env=test pim:install --force"
                 }
             }
         }
@@ -159,7 +159,7 @@ def runIntegrationTestEE(version) {
                     sh "echo '    pim_installer.fixture_loader.job_loader.config_file: PimExcelInitBundle/Resources/config/fixtures_jobs_ee.yml' >> app/config/parameters_test.yml"
                     sh "echo '    installer_data: PimExcelInitBundle:minimal_EE' >> app/config/parameters_test.yml"
                     sh "sed -i 's#// your app bundles should be registered here#\\0\\nnew Pim\\\\Bundle\\\\ExcelInitBundle\\\\PimExcelInitBundle(),#' app/AppKernel.php"
-                    sh "./app/console --env=test pim:install --force"
+                    sh "./bin/console --env=test pim:install --force"
                 }
             }
         }
