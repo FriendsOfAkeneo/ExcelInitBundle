@@ -70,7 +70,8 @@ def runPhpSpecTest(version) {
         deleteDir()
         cleanUpEnvironment()
         try {
-            docker.image("akeneo/php:${version}").inside("-v /home/akeneo/.composer:/home/akeneo/.composer -e COMPOSER_HOME=/home/akeneo/.composer") {
+            docker.image("akeneo/php:${version}")
+            .inside("-v /home/akeneo/.composer:/home/docker/.composer -e COMPOSER_HOME=/home/docker/.composer") {
                 unstash "excel_init"
 
                 sh "composer install --optimize-autoloader --no-interaction --no-progress --prefer-dist"
@@ -90,7 +91,8 @@ def runPhpCsFixerTest(version) {
         deleteDir()
         cleanUpEnvironment()
         try {
-            docker.image("akeneo/php:${version}").inside("-v /home/akeneo/.composer:/home/akeneo/.composer -e COMPOSER_HOME=/home/akeneo/.composer") {
+            docker.image("akeneo/php:${version}")
+            .inside("-v /home/akeneo/.composer:/home/docker/.composer -e COMPOSER_HOME=/home/docker/.composer") {
                 unstash "excel_init"
 
                 sh "composer install --optimize-autoloader --no-interaction --no-progress --prefer-dist"
@@ -110,12 +112,16 @@ def runIntegrationTest(version) {
         deleteDir()
         cleanUpEnvironment()
         docker.image("elasticsearch:5.5").withRun("--name elasticsearch -e ES_JAVA_OPTS=\"-Xms256m -Xmx256m\"") {
-            docker.image("mysql:5.7").withRun("--name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=akeneo_pim -e MYSQL_PASSWORD=akeneo_pim -e MYSQL_DATABASE=akeneo_pim --tmpfs=/var/lib/mysql/:rw,noexec,nosuid,size=1000m --tmpfs=/tmp/:rw,noexec,nosuid,size=300m") {
-                docker.image("akeneo/php:${version}").inside("--link mysql:mysql --link elasticsearch:elasticsearch") {
+            docker.image("mysql:5.7")
+            .withRun("--name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=akeneo_pim -e MYSQL_PASSWORD=akeneo_pim -e MYSQL_DATABASE=akeneo_pim --tmpfs=/var/lib/mysql/:rw,noexec,nosuid,size=1000m --tmpfs=/tmp/:rw,noexec,nosuid,size=300m") {
+                docker.image("akeneo/php:${version}")
+                .inside("--link mysql:mysql --link elasticsearch:elasticsearch -v /home/akeneo/.composer:/home/docker/.composer -e COMPOSER_HOME=/home/docker/.composer") {
                     unstash "pim_community"
 
                     sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
                     sh "composer update --optimize-autoloader --no-interaction --no-progress --prefer-dist"
+                    sh "bin/console assets:install"
+                    sh "bin/console pim:installer:dump-require-paths"
 
                     dir("vendor/akeneo/excel-init-bundle") {
                         deleteDir()
@@ -124,12 +130,16 @@ def runIntegrationTest(version) {
                     sh "composer dump-autoload -o"
 
                     sh "cp app/config/parameters.yml.dist app/config/parameters_test.yml"
-                    sh "sed -i 's/database_host:     localhost/database_host:     mysql/' app/config/parameters_test.yml"
+                    sh "sed -i 's/database_host:.*/database_host: mysql/' app/config/parameters_test.yml"
                     sh "echo '' >> app/config/parameters_test.yml"
                     sh "echo '    pim_installer.fixture_loader.job_loader.config_file: PimExcelInitBundle/Resources/config/fixtures_jobs.yml' >> app/config/parameters_test.yml"
                     sh "echo '    installer_data: PimExcelInitBundle:minimal' >> app/config/parameters_test.yml"
+                    sh "sed -i \"s#index_hosts: .*#index_hosts: 'elasticsearch:9200'#g\" app/config/parameters_test.yml"
                     sh "sed -i 's#// your app bundles should be registered here#\\0\\nnew Pim\\\\Bundle\\\\ExcelInitBundle\\\\PimExcelInitBundle(),#' app/AppKernel.php"
-                    sh "./app/console --env=test pim:install --force"
+                    
+                    sh "sleep 10"
+                    
+                    sh "./bin/console --env=test pim:install --force"
                 }
             }
         }
@@ -142,11 +152,14 @@ def runIntegrationTestEE(version) {
         cleanUpEnvironment()
         docker.image("elasticsearch:5.5").withRun("--name elasticsearch -e ES_JAVA_OPTS=\"-Xms256m -Xmx256m\"") {
             docker.image("mysql:5.7").withRun("--name mysql -e MYSQL_ROOT_PASSWORD=root -e MYSQL_USER=akeneo_pim -e MYSQL_PASSWORD=akeneo_pim -e MYSQL_DATABASE=akeneo_pim --tmpfs=/var/lib/mysql/:rw,noexec,nosuid,size=1000m --tmpfs=/tmp/:rw,noexec,nosuid,size=300m") {
-                docker.image("akeneo/php:${version}").inside("--link mysql:mysql --link elasticsearch:elasticsearch") {
+                docker.image("akeneo/php:${version}")
+                .inside("--link mysql:mysql --link elasticsearch:elasticsearch -v /home/akeneo/.composer:/home/docker/.composer -e COMPOSER_HOME=/home/docker/.composer") {
                     unstash "pim_enterprise"
 
                     sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
                     sh "composer update --optimize-autoloader --no-interaction --no-progress --prefer-dist"
+                    sh "bin/console assets:install"
+                    sh "bin/console pim:installer:dump-require-paths"
 
                     dir("vendor/akeneo/excel-init-bundle") {
                         unstash "excel_init"
@@ -154,12 +167,16 @@ def runIntegrationTestEE(version) {
                     sh "composer dump-autoload -o"
 
                     sh "cp app/config/parameters.yml.dist app/config/parameters_test.yml"
-                    sh "sed -i 's/database_host:     localhost/database_host:     mysql/' app/config/parameters_test.yml"
+                    sh "sed -i 's/database_host:.*/database_host: mysql/' app/config/parameters_test.yml"
                     sh "echo '' >> app/config/parameters_test.yml"
                     sh "echo '    pim_installer.fixture_loader.job_loader.config_file: PimExcelInitBundle/Resources/config/fixtures_jobs_ee.yml' >> app/config/parameters_test.yml"
                     sh "echo '    installer_data: PimExcelInitBundle:minimal_EE' >> app/config/parameters_test.yml"
+                    sh "sed -i \"s#index_hosts: .*#index_hosts: 'elasticsearch:9200'#g\" app/config/parameters_test.yml"
                     sh "sed -i 's#// your app bundles should be registered here#\\0\\nnew Pim\\\\Bundle\\\\ExcelInitBundle\\\\PimExcelInitBundle(),#' app/AppKernel.php"
-                    sh "./app/console --env=test pim:install --force"
+                    
+                    sh "sleep 10"
+                    
+                    sh "./bin/console --env=test pim:install --force"
                 }
             }
         }
