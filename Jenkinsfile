@@ -35,11 +35,11 @@ stage("Checkout") {
         ])
         stash "pim_community"
 
-       checkout([$class: 'GitSCM',
-         branches: [[name: "${Globals.pimVersion}"]],
-         userRemoteConfigs: [[credentialsId: 'github-credentials', url: 'https://github.com/akeneo/pim-enterprise-standard.git']]
-       ])
-       stash "pim_enterprise"
+        checkout([$class: 'GitSCM',
+            branches: [[name: "${Globals.pimVersion}"]],
+            userRemoteConfigs: [[credentialsId: 'github-credentials', url: 'https://github.com/akeneo/pim-enterprise-standard.git']]
+        ])
+        stash "pim_enterprise"
     }
 }
 

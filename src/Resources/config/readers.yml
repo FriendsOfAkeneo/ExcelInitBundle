@@ -77,7 +77,7 @@ services:
             - '@pim_excel_installer.reader.file.xlsx_iterator_factory'
             - '@pim_connector.array_converter.flat_to_standard.category'
             - header_key: code
-              include_worksheets: [ '/^categories$/' ]
+              include_worksheets: [ '/^categories/' ]
 
     pim_excel_installer.reader.xls_init.option:
         class: '%pim_connector.reader.file.xlsx.class%'
