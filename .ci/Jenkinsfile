@@ -107,6 +107,7 @@ def runIntegrationTest(version) {
 
         sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
         sh "composer update --optimize-autoloader --no-interaction --no-progress --prefer-dist"
+        sh "chmod -R 777 ${env.WORKSPACE}"
         sh "bin/console assets:install"
         sh "bin/console pim:installer:dump-require-paths"
 
@@ -136,6 +137,7 @@ def runIntegrationTestEE(version) {
 
         sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
         sh "composer update --optimize-autoloader --no-interaction --no-progress --prefer-dist"
+        sh "chmod -R 777 ${env.WORKSPACE}"
         sh "bin/console assets:install"
         sh "bin/console pim:installer:dump-require-paths"
 
