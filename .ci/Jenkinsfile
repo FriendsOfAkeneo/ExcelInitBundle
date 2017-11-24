@@ -203,7 +203,7 @@ def podIntegration(phpVersion, body) {
         ),    
     ]) { 
         node(podName) {
-            containenr("php") {
+            container("php") {
                 body()
             }
         }
