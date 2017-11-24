@@ -27,7 +27,7 @@ stage("Checkout") {
     milestone 2
 
     podPHP(phpVersion, {
-        deleteDir()
+        
         checkout scm
         stash "excel_init"
 
@@ -69,7 +69,7 @@ if (launchIntegrationTests.equals("yes")) {
 
 def runPhpSpecTest(version) {
     podPHP(version, { 
-        deleteDir()
+        
         try {
             unstash "excel_init"
 
@@ -79,14 +79,14 @@ def runPhpSpecTest(version) {
         } finally {
             sh "sed -i \"s/testcase name=\\\"/testcase name=\\\"[php-${version}] /\" app/build/logs/*.xml"
             junit "app/build/logs/*.xml"
-            deleteDir()
+            
         }
     })
 }
 
 def runPhpCsFixerTest(version) {
     podPHP(version, {
-        deleteDir()
+        
         try {
             unstash "excel_init"
 
@@ -96,7 +96,6 @@ def runPhpCsFixerTest(version) {
         } finally {
             sh "sed -i \"s/testcase name=\\\"/testcase name=\\\"[php-${version}] /\" app/build/logs/*.xml"
             junit "app/build/logs/*.xml"
-            deleteDir()
         }
     })
 }
@@ -129,7 +128,7 @@ def runIntegrationTest(version) {
         ),    
     ]) {   
         containenr("php") {
-            deleteDir()
+            
             unstash "pim_community"
 
             sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
@@ -138,7 +137,7 @@ def runIntegrationTest(version) {
             sh "bin/console pim:installer:dump-require-paths"
 
             dir("vendor/akeneo/excel-init-bundle") {
-                deleteDir()
+                
                 unstash "excel_init"
             }
             sh "composer dump-autoload -o"
@@ -186,7 +185,7 @@ def runIntegrationTestEE(version) {
         ),    
     ]) {   
         containenr("php") {
-            deleteDir()
+            
             unstash "pim_enterprise"
 
             sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
