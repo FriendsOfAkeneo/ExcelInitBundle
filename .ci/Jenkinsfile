@@ -160,7 +160,7 @@ def runIntegrationTestEE(version) {
 def podPHP(phpVersion, body) {
     def podName = "ExcelInitBundle-" + UUID.randomUUID().toString()
     podTemplate(label: podName, containers: [
-        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${phpVersion}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
+        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${phpVersion}", resourceRequestCpu: '100m', resourceRequestMemory: '1000Mi',
             envVars: [
                 envVar(key: "COMPOSER_HOME", value: "${env.WORKSPACE}/.composer"),
             ]        
@@ -197,7 +197,7 @@ def podIntegration(phpVersion, body) {
                 ]
             
             ),
-            containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${phpVersion}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
+            containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${phpVersion}", resourceRequestCpu: '100m', resourceRequestMemory: '1000Mi',
                 envVars: [
                     envVar(key: "COMPOSER_HOME", value: "${env.WORKSPACE}/.composer"),
                     envVar(key: "COMPOSER_AUTH", value: "{\"github-oauth\":{\"github.com\": \"$token\"}}")
