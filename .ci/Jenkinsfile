@@ -67,7 +67,7 @@ if (launchIntegrationTests.equals("yes")) {
 
 def runPhpSpecTest(version) {
     podTemplate(label: "ExcelInitBundle-" + uuid, containers: [
-        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${version}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi'
+        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${version}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
             envVars: [
                 envVar(key: "COMPOSER_HOME", value: "${env.WORKSPACE}/.composer"),
             ]        
@@ -92,7 +92,7 @@ def runPhpSpecTest(version) {
 
 def runPhpCsFixerTest(version) {
     podTemplate(label: "ExcelInitBundle-" + uuid, containers: [
-        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${version}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi'
+        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${version}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
             envVars: [
                 envVar(key: "COMPOSER_HOME", value: "${env.WORKSPACE}/.composer"),
             ]        
@@ -117,7 +117,7 @@ def runPhpCsFixerTest(version) {
 
 def runIntegrationTest(version) {
     podTemplate(label: "ExcelInitBundle-" + uuid, containers: [
-        containerTemplate(name: "elasticsearch", ttyEnabled: true, command: 'cat', image: "elasticsearch:5.5", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi'
+        containerTemplate(name: "elasticsearch", ttyEnabled: true, command: 'cat', image: "elasticsearch:5.5", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
             envVars: [
                 envVar(key: "ES_JAVA_OPTS", value: "-Xms256m -Xmx256m"),
                 envVar(key: "FORCE", value: "true"),
@@ -136,7 +136,7 @@ def runIntegrationTest(version) {
             ]
         
         ),
-        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${version}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi'
+        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${version}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
             envVars: [
                 envVar(key: "COMPOSER_HOME", value: "${env.WORKSPACE}/.composer"),
             ]        
@@ -174,7 +174,7 @@ def runIntegrationTest(version) {
 
 def runIntegrationTestEE(version) {
     podTemplate(label: "ExcelInitBundle-" + uuid, containers: [
-        containerTemplate(name: "elasticsearch", ttyEnabled: true, command: 'cat', image: "elasticsearch:5.5", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi'
+        containerTemplate(name: "elasticsearch", ttyEnabled: true, command: 'cat', image: "elasticsearch:5.5", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
             envVars: [
                 envVar(key: "ES_JAVA_OPTS", value: "-Xms256m -Xmx256m"),
                 envVar(key: "FORCE", value: "true"),
@@ -193,7 +193,7 @@ def runIntegrationTestEE(version) {
             ]
         
         ),
-        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${version}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi'
+        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${version}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
             envVars: [
                 envVar(key: "COMPOSER_HOME", value: "${env.WORKSPACE}/.composer"),
             ]        
