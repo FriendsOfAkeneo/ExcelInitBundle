@@ -26,7 +26,7 @@ stage("Checkout") {
     }
     milestone 2
 
-    podPHP({
+    podPHP(phpVersion, {
         deleteDir()
         checkout scm
         stash "excel_init"
@@ -49,8 +49,8 @@ if (launchUnitTests.equals("yes")) {
     stage("Unit tests") {
         def tasks = [:]
 
-        tasks["phpspec-7.1"] = {runPhpSpecTest("7.1")}
-        tasks["php-cs-fixer-7.1"] = {runPhpCsFixerTest("7.1")}
+        tasks["phpspec-7.1"] = {runPhpSpecTest(phpVersion)}
+        tasks["php-cs-fixer-7.1"] = {runPhpCsFixerTest(phpVersion)}
 
         parallel tasks
     }
@@ -60,15 +60,15 @@ if (launchIntegrationTests.equals("yes")) {
     stage("Integration tests") {
         def tasks = [:]
 
-        tasks["phpunit-7.1-ce"] = {runIntegrationTest("7.1")}
-        tasks["phpunit-7.1-ee"] = {runIntegrationTestEE("7.1")}
+        tasks["phpunit-7.1-ce"] = {runIntegrationTest(phpVersion)}
+        tasks["phpunit-7.1-ee"] = {runIntegrationTestEE(phpVersion)}
 
         parallel tasks
     }
 }
 
 def runPhpSpecTest(version) {
-    podPHP({ 
+    podPHP(version, { 
         deleteDir()
         try {
             unstash "excel_init"
@@ -85,7 +85,7 @@ def runPhpSpecTest(version) {
 }
 
 def runPhpCsFixerTest(version) {
-    podPHP({
+    podPHP(version, {
         deleteDir()
         try {
             unstash "excel_init"
@@ -214,10 +214,10 @@ def runIntegrationTestEE(version) {
     }
 }
 
-def podPHP(body) {
+def podPHP(phpVersion, body) {
         def podName = "ExcelInitBundle-" + UUID.randomUUID().toString()
     podTemplate(label: podName, containers: [
-        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${version}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
+        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${phpVersion}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
             envVars: [
                 envVar(key: "COMPOSER_HOME", value: "${env.WORKSPACE}/.composer"),
             ]        
