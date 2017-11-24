@@ -176,39 +176,41 @@ def podPHP(phpVersion, body) {
 
 def podIntegration(phpVersion, body) {
     def podName = "ExcelInitBundle-" + UUID.randomUUID().toString()
-    podTemplate(label: podName, containers: [
-        containerTemplate(name: "elasticsearch", ttyEnabled: true, command: 'cat', image: "elasticsearch:5.5", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
-            envVars: [
-                envVar(key: "ES_JAVA_OPTS", value: "-Xms256m -Xmx256m"),
-                envVar(key: "FORCE", value: "true"),
-                ]        
-        ),
-        containerTemplate(name: "mysql", ttyEnabled: true, command: 'cat', image: "mysql:5.7", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi', 
-            envVars: [
-                envVar(key: "MYSQL_ROOT_PASSWORD", value: "root"),
-                envVar(key: "MYSQL_USER", value: "akeneo_pim"),
-                envVar(key: "MYSQL_PASSWORD", value: "akeneo_pim"),
-                envVar(key: "MYSQL_DATABASE", value: "akeneo_pim"),
-            ], volumes: [
+    withCredentials([string(credentialsId: 'composer-token', variable: 'token')]) {
+        podTemplate(label: podName, containers: [
+            containerTemplate(name: "elasticsearch", ttyEnabled: true, command: 'cat', image: "elasticsearch:5.5", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
+                envVars: [
+                    envVar(key: "ES_JAVA_OPTS", value: "-Xms256m -Xmx256m"),
+                    envVar(key: "FORCE", value: "true"),
+                    ]        
+            ),
+            containerTemplate(name: "mysql", ttyEnabled: true, command: 'cat', image: "mysql:5.7", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi', 
+                envVars: [
+                    envVar(key: "MYSQL_ROOT_PASSWORD", value: "root"),
+                    envVar(key: "MYSQL_USER", value: "akeneo_pim"),
+                    envVar(key: "MYSQL_PASSWORD", value: "akeneo_pim"),
+                    envVar(key: "MYSQL_DATABASE", value: "akeneo_pim"),
+                ], volumes: [
 
-                emptyDirVolume(memory: false, mountPath: "/var/lib/mysql"),
-                emptyDirVolume(memory: false, mountPath: "/tmp")
-            ]
-        
-        ),
-        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${phpVersion}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
-            envVars: [
-                envVar(key: "COMPOSER_HOME", value: "${env.WORKSPACE}/.composer"),
-            ]        
-        ),    
-    ]) { 
-        node(podName) {
-            container("php") {
-                body()
+                    emptyDirVolume(memory: false, mountPath: "/var/lib/mysql"),
+                    emptyDirVolume(memory: false, mountPath: "/tmp")
+                ]
+            
+            ),
+            containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${phpVersion}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
+                envVars: [
+                    envVar(key: "COMPOSER_HOME", value: "${env.WORKSPACE}/.composer"),
+                    envVar(key: "COMPOSER_AUTH", value: "{\"github-oauth\":{\"github.com\": \"$token\"}}")
+                ]        
+            ),    
+        ]) { 
+            node(podName) {
+                container("php") {
+                    body()
+                }
             }
         }
     }
-    
 }
 
 
