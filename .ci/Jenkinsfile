@@ -41,6 +41,7 @@ stage("Checkout") {
             branches: [[name: "${Globals.pimVersion}"]],
             userRemoteConfigs: [[credentialsId: 'github-credentials', url: 'https://github.com/akeneo/pim-enterprise-standard.git']]
         ])
+        sh "chmod -R 777 ${env.WORKSPACE}"
         stash "pim_enterprise"
     })
 }
@@ -206,7 +207,6 @@ def podIntegration(phpVersion, body) {
         ]) { 
             node(podName) {
                 container("php") {
-                    sh "chmod -R 777 /tmp"
                     body()
                 }
             }
