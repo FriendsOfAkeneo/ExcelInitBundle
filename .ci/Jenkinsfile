@@ -101,120 +101,64 @@ def runPhpCsFixerTest(version) {
 }
 
 def runIntegrationTest(version) {
-    podTemplate(label: "ExcelInitBundle-" + uuid, containers: [
-        containerTemplate(name: "elasticsearch", ttyEnabled: true, command: 'cat', image: "elasticsearch:5.5", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
-            envVars: [
-                envVar(key: "ES_JAVA_OPTS", value: "-Xms256m -Xmx256m"),
-                envVar(key: "FORCE", value: "true"),
-                ]        
-        ),
-        containerTemplate(name: "mysql", ttyEnabled: true, command: 'cat', image: "mysql:5.7", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi', 
-            envVars: [
-                envVar(key: "MYSQL_ROOT_PASSWORD", value: "root"),
-                envVar(key: "MYSQL_USER", value: "akeneo_pim"),
-                envVar(key: "MYSQL_PASSWORD", value: "akeneo_pim"),
-                envVar(key: "MYSQL_DATABASE", value: "akeneo_pim"),
-            ], volumes: [
+    podIntegration(version, {
+        unstash "pim_community"
 
-                emptyDirVolume(memory: false, mountPath: "/var/lib/mysql"),
-                emptyDirVolume(memory: false, mountPath: "/tmp")
-            ]
-        
-        ),
-        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${version}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
-            envVars: [
-                envVar(key: "COMPOSER_HOME", value: "${env.WORKSPACE}/.composer"),
-            ]        
-        ),    
-    ]) {   
-        containenr("php") {
+        sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
+        sh "composer update --optimize-autoloader --no-interaction --no-progress --prefer-dist"
+        sh "bin/console assets:install"
+        sh "bin/console pim:installer:dump-require-paths"
+
+        dir("vendor/akeneo/excel-init-bundle") {
             
-            unstash "pim_community"
-
-            sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
-            sh "composer update --optimize-autoloader --no-interaction --no-progress --prefer-dist"
-            sh "bin/console assets:install"
-            sh "bin/console pim:installer:dump-require-paths"
-
-            dir("vendor/akeneo/excel-init-bundle") {
-                
-                unstash "excel_init"
-            }
-            sh "composer dump-autoload -o"
-
-            sh "cp app/config/parameters.yml.dist app/config/parameters_test.yml"
-            sh "sed -i 's/database_host:.*/database_host: mysql/' app/config/parameters_test.yml"
-            sh "echo '' >> app/config/parameters_test.yml"
-            sh "echo '    pim_installer.fixture_loader.job_loader.config_file: PimExcelInitBundle/Resources/config/fixtures_jobs.yml' >> app/config/parameters_test.yml"
-            sh "echo '    installer_data: PimExcelInitBundle:minimal' >> app/config/parameters_test.yml"
-            sh "sed -i \"s#index_hosts: .*#index_hosts: 'elasticsearch:9200'#g\" app/config/parameters_test.yml"
-            sh "sed -i 's#// your app bundles should be registered here#\\0\\nnew Pim\\\\Bundle\\\\ExcelInitBundle\\\\PimExcelInitBundle(),#' app/AppKernel.php"
-            
-            sh "sleep 10"
-            
-            sh "./bin/console --env=test pim:install --force"
+            unstash "excel_init"
         }
-    }
+        sh "composer dump-autoload -o"
+
+        sh "cp app/config/parameters.yml.dist app/config/parameters_test.yml"
+        sh "sed -i 's/database_host:.*/database_host: mysql/' app/config/parameters_test.yml"
+        sh "echo '' >> app/config/parameters_test.yml"
+        sh "echo '    pim_installer.fixture_loader.job_loader.config_file: PimExcelInitBundle/Resources/config/fixtures_jobs.yml' >> app/config/parameters_test.yml"
+        sh "echo '    installer_data: PimExcelInitBundle:minimal' >> app/config/parameters_test.yml"
+        sh "sed -i \"s#index_hosts: .*#index_hosts: 'elasticsearch:9200'#g\" app/config/parameters_test.yml"
+        sh "sed -i 's#// your app bundles should be registered here#\\0\\nnew Pim\\\\Bundle\\\\ExcelInitBundle\\\\PimExcelInitBundle(),#' app/AppKernel.php"
+        
+        sh "sleep 10"
+        
+        sh "./bin/console --env=test pim:install --force"
+    })
 }
 
 def runIntegrationTestEE(version) {
-    podTemplate(label: "ExcelInitBundle-" + uuid, containers: [
-        containerTemplate(name: "elasticsearch", ttyEnabled: true, command: 'cat', image: "elasticsearch:5.5", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
-            envVars: [
-                envVar(key: "ES_JAVA_OPTS", value: "-Xms256m -Xmx256m"),
-                envVar(key: "FORCE", value: "true"),
-                ]        
-        ),
-        containerTemplate(name: "mysql", ttyEnabled: true, command: 'cat', image: "mysql:5.7", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi', 
-            envVars: [
-                envVar(key: "MYSQL_ROOT_PASSWORD", value: "root"),
-                envVar(key: "MYSQL_USER", value: "akeneo_pim"),
-                envVar(key: "MYSQL_PASSWORD", value: "akeneo_pim"),
-                envVar(key: "MYSQL_DATABASE", value: "akeneo_pim"),
-            ], volumes: [
+    podIntegration(version, {
+        unstash "pim_enterprise"
 
-                emptyDirVolume(memory: false, mountPath: "/var/lib/mysql"),
-                emptyDirVolume(memory: false, mountPath: "/tmp")
-            ]
-        
-        ),
-        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${version}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
-            envVars: [
-                envVar(key: "COMPOSER_HOME", value: "${env.WORKSPACE}/.composer"),
-            ]        
-        ),    
-    ]) {   
-        containenr("php") {
-            
-            unstash "pim_enterprise"
+        sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
+        sh "composer update --optimize-autoloader --no-interaction --no-progress --prefer-dist"
+        sh "bin/console assets:install"
+        sh "bin/console pim:installer:dump-require-paths"
 
-            sh "composer require --no-update phpunit/phpunit akeneo/excel-init-bundle:${Globals.extensionBranch}"
-            sh "composer update --optimize-autoloader --no-interaction --no-progress --prefer-dist"
-            sh "bin/console assets:install"
-            sh "bin/console pim:installer:dump-require-paths"
-
-            dir("vendor/akeneo/excel-init-bundle") {
-                unstash "excel_init"
-            }
-            sh "composer dump-autoload -o"
-
-            sh "cp app/config/parameters.yml.dist app/config/parameters_test.yml"
-            sh "sed -i 's/database_host:.*/database_host: mysql/' app/config/parameters_test.yml"
-            sh "echo '' >> app/config/parameters_test.yml"
-            sh "echo '    pim_installer.fixture_loader.job_loader.config_file: PimExcelInitBundle/Resources/config/fixtures_jobs_ee.yml' >> app/config/parameters_test.yml"
-            sh "echo '    installer_data: PimExcelInitBundle:minimal_EE' >> app/config/parameters_test.yml"
-            sh "sed -i \"s#index_hosts: .*#index_hosts: 'elasticsearch:9200'#g\" app/config/parameters_test.yml"
-            sh "sed -i 's#// your app bundles should be registered here#\\0\\nnew Pim\\\\Bundle\\\\ExcelInitBundle\\\\PimExcelInitBundle(),#' app/AppKernel.php"
-            
-            sh "sleep 10"
-            
-            sh "./bin/console --env=test pim:install --force"
+        dir("vendor/akeneo/excel-init-bundle") {
+            unstash "excel_init"
         }
-    }
+        sh "composer dump-autoload -o"
+
+        sh "cp app/config/parameters.yml.dist app/config/parameters_test.yml"
+        sh "sed -i 's/database_host:.*/database_host: mysql/' app/config/parameters_test.yml"
+        sh "echo '' >> app/config/parameters_test.yml"
+        sh "echo '    pim_installer.fixture_loader.job_loader.config_file: PimExcelInitBundle/Resources/config/fixtures_jobs_ee.yml' >> app/config/parameters_test.yml"
+        sh "echo '    installer_data: PimExcelInitBundle:minimal_EE' >> app/config/parameters_test.yml"
+        sh "sed -i \"s#index_hosts: .*#index_hosts: 'elasticsearch:9200'#g\" app/config/parameters_test.yml"
+        sh "sed -i 's#// your app bundles should be registered here#\\0\\nnew Pim\\\\Bundle\\\\ExcelInitBundle\\\\PimExcelInitBundle(),#' app/AppKernel.php"
+        
+        sh "sleep 10"
+        
+        sh "./bin/console --env=test pim:install --force"
+    })
 }
 
 def podPHP(phpVersion, body) {
-        def podName = "ExcelInitBundle-" + UUID.randomUUID().toString()
+    def podName = "ExcelInitBundle-" + UUID.randomUUID().toString()
     podTemplate(label: podName, containers: [
         containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${phpVersion}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
             envVars: [
@@ -228,6 +172,43 @@ def podPHP(phpVersion, body) {
             }
         }
     }
+}
+
+def podIntegration(phpVersion, body) {
+    def podName = "ExcelInitBundle-" + UUID.randomUUID().toString()
+    podTemplate(label: podName, containers: [
+        containerTemplate(name: "elasticsearch", ttyEnabled: true, command: 'cat', image: "elasticsearch:5.5", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
+            envVars: [
+                envVar(key: "ES_JAVA_OPTS", value: "-Xms256m -Xmx256m"),
+                envVar(key: "FORCE", value: "true"),
+                ]        
+        ),
+        containerTemplate(name: "mysql", ttyEnabled: true, command: 'cat', image: "mysql:5.7", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi', 
+            envVars: [
+                envVar(key: "MYSQL_ROOT_PASSWORD", value: "root"),
+                envVar(key: "MYSQL_USER", value: "akeneo_pim"),
+                envVar(key: "MYSQL_PASSWORD", value: "akeneo_pim"),
+                envVar(key: "MYSQL_DATABASE", value: "akeneo_pim"),
+            ], volumes: [
+
+                emptyDirVolume(memory: false, mountPath: "/var/lib/mysql"),
+                emptyDirVolume(memory: false, mountPath: "/tmp")
+            ]
+        
+        ),
+        containerTemplate(name: "php", ttyEnabled: true, command: 'cat', image: "akeneo/php:${version}", resourceRequestCpu: '100m', resourceRequestMemory: '200Mi',
+            envVars: [
+                envVar(key: "COMPOSER_HOME", value: "${env.WORKSPACE}/.composer"),
+            ]        
+        ),    
+    ]) { 
+        node(podName) {
+            containenr("php") {
+                body()
+            }
+        }
+    }
+    
 }
 
 
