@@ -206,6 +206,7 @@ def podIntegration(phpVersion, body) {
         ]) { 
             node(podName) {
                 container("php") {
+                    sh "chmod -R 777 /tmp"
                     body()
                 }
             }
