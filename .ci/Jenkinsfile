@@ -155,7 +155,6 @@ def runIntegrationTestEE(version) {
         sh "sed -i 's#// your app bundles should be registered here#\\0\\nnew Pim\\\\Bundle\\\\ExcelInitBundle\\\\PimExcelInitBundle(),#' app/AppKernel.php"
         
         sh "sleep 10"
-        input(message: 'wait?')
         sh "./bin/console --env=test pim:install --force"
     })
 }
