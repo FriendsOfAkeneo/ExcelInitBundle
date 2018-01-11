@@ -8,7 +8,7 @@ milestone 2
 
 stage("Tests") {
   withCredentials([string(credentialsId: 'composer-token', variable: 'token')]) {
-    podTemplate(label: 'icecat-connector', containers: [
+    podTemplate(label: 'excel-init-ee', containers: [
       containerTemplate(
         name: "elasticsearch",
         image: "elasticsearch:5.5",
