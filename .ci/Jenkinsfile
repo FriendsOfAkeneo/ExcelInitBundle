@@ -46,7 +46,7 @@ stage("Tests") {
         ]
       ),
     ]) {
-      node('icecat-connector') {
+      node('excel-init-ee') {
         container("php") {
           checkout([$class: 'GitSCM',
             branches: [[name: "2.1"]],
@@ -66,12 +66,7 @@ stage("Tests") {
           sh """
             composer dump-autoload -o
             rm var/cache/* -rf
-            sh "cp app/config/parameters.yml.dist app/config/parameters_test.yml"
-            sh "sed -i 's/database_host:.*/database_host: 127.0.0.1/' app/config/parameters_test.yml"
-            sh "echo '' >> app/config/parameters_test.yml"
-            sh "echo '    pim_installer.fixture_loader.job_loader.config_file: PimExcelInitBundle/Resources/config/fixtures_jobs_ee.yml' >> app/config/parameters_test.yml"
-            sh "echo '    installer_data: PimExcelInitBundle:minimal_EE' >> app/config/parameters_test.yml"
-            sh "sed -i \"s#index_hosts: .*#index_hosts: '127.0.0.1:9200'#g\" app/config/parameters_test.yml"
+            sh "cp vendor/akeneo/excel-init-bundle/.ci/config/parameters_test.yml app/config/parameters_test.yml"
             sed -i 's#// your app bundles should be registered here#\\0\\nnew Pim\\\\Bundle\\\\ExcelInitBundle\\\\PimExcelInitBundle(),#' app/AppKernel.php
             sleep 10
           """
