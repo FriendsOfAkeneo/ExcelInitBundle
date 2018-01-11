@@ -66,6 +66,7 @@ stage("Tests") {
           sh """
             composer dump-autoload -o
             rm var/cache/* -rf
+            sh "cp app/config/parameters.yml.dist app/config/parameters_test.yml"
             sh "sed -i 's/database_host:.*/database_host: 127.0.0.1/' app/config/parameters_test.yml"
             sh "echo '' >> app/config/parameters_test.yml"
             sh "echo '    pim_installer.fixture_loader.job_loader.config_file: PimExcelInitBundle/Resources/config/fixtures_jobs_ee.yml' >> app/config/parameters_test.yml"
