@@ -40,8 +40,8 @@ Enable the bundle in the `app/AppKernel.php` file in the `registerProjectBundles
 Now let's clean your cache and dump your assets:
 
 ```bash
-    php app/console cache:clear --env=prod
-    php app/console pim:installer:assets --env=prod
+    php bin/console cache:warmup --env=prod
+    php bin/console pim:installer:assets --env=prod
 ```
 
 ## Documentation
