@@ -72,12 +72,6 @@ stage("Tests") {
           """
 
           sh "bin/console pim:install --force --env=test"
-
-          try {
-            sh "vendor/bin/phpunit -c app/phpunit.xml --log-junit app/build/logs/phpunit.xml"
-          } finally {
-            junit "app/build/logs/*.xml"
-          }
         }
       }
     }
