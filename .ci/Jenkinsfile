@@ -66,7 +66,7 @@ stage("Tests") {
           sh """
             composer dump-autoload -o
             rm var/cache/* -rf
-            sh "cp vendor/akeneo/excel-init-bundle/.ci/config/parameters_test.yml app/config/parameters_test.yml"
+            cp vendor/akeneo/excel-init-bundle/.ci/config/parameters_test.yml app/config/parameters_test.yml
             sed -i 's#// your app bundles should be registered here#\\0\\nnew Pim\\\\Bundle\\\\ExcelInitBundle\\\\PimExcelInitBundle(),#' app/AppKernel.php
             sleep 10
           """
