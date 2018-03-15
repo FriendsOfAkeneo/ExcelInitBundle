@@ -26,7 +26,7 @@ Be carefull to use the new `init.xlsx` file of this bundle as there are some str
 From your application root:
 
 ```bash
-    php composer.phar require --prefer-dist akeneo/excel-init-bundle:2.0.*
+    php composer.phar require --prefer-dist akeneo/excel-init-bundle:2.1
 ```
 
 Enable the bundle in the `app/AppKernel.php` file in the `registerProjectBundles()` method:
