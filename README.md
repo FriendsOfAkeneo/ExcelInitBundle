@@ -15,7 +15,8 @@ Be carefull to use the new `init.xlsx` file of this bundle as there are some str
 
 | ExcelInitBundle | Akeneo PIM Community Edition |
 |:---------------:|:----------------------------:|
-| v2.0.*          | v2.*                         |
+| v2.1.*          | v2.2                         |
+| v2.0.*          | v2.0 - v2.1                  |
 | v1.2.*          | v1.7.*                       |
 | v1.1.*          | v1.6.*                       |
 | v1.0.*          | v1.6.*                       |
@@ -25,7 +26,7 @@ Be carefull to use the new `init.xlsx` file of this bundle as there are some str
 From your application root:
 
 ```bash
-    php composer.phar require --prefer-dist akeneo/excel-init-bundle:2.0.*
+    php composer.phar require --prefer-dist akeneo/excel-init-bundle:2.1
 ```
 
 Enable the bundle in the `app/AppKernel.php` file in the `registerProjectBundles()` method:
