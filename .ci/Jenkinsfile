@@ -49,7 +49,7 @@ stage("Tests") {
       node('excel-init-ee') {
         container("php") {
           checkout([$class: 'GitSCM',
-            branches: [[name: "2.2"]],
+            branches: [[name: "2.3"]],
             userRemoteConfigs: [[credentialsId: 'github-credentials', url: 'https://github.com/akeneo/pim-enterprise-standard.git']]
           ])
 
