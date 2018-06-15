@@ -54,7 +54,7 @@ stage("Tests") {
           ])
 
           sh """
-            php -d memory_limit=3G /usr/local/bin/composer require phpunit/phpunit akeneo/excel-init-bundle:dev-master --no-interaction --no-progress --prefer-dist
+            php -d memory_limit=3G /usr/local/bin/composer require phpunit/phpunit:^5.7 akeneo/excel-init-bundle:dev-master --no-interaction --no-progress --prefer-dist
             chmod -R 777 vendor
           """
 
