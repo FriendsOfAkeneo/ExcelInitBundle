@@ -15,7 +15,7 @@ Be carefull to use the new `init.xlsx` file of this bundle as there are some str
 
 | ExcelInitBundle | Akeneo PIM Community Edition |
 |:---------------:|:----------------------------:|
-| v2.1.*          | v2.2                         |
+| v2.1.*          | >= v2.2                      |
 | v2.0.*          | v2.0 - v2.1                  |
 | v1.2.*          | v1.7.*                       |
 | v1.1.*          | v1.6.*                       |
