@@ -11,14 +11,8 @@
             "homepage": "http://www.akeneo.com"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/akeneo/pim-community-dev.git"
-        }
-    ],
     "require": {
-        "akeneo/pim-community-dev": "^2.2"
+        "akeneo/pim-community-dev": "dev-master"
     },
     "require-dev": {
         "phpspec/phpspec": "@stable",
