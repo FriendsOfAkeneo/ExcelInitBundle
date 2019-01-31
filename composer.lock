@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/akeneo/pim-community-dev.git",
-                "reference": "8cda9f6f4f29bd14a7d04a6b94fdfdd6efa824ef"
+                "reference": "2cfeb26becfe81e33b4d097d2f0dba7de18cc6c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/akeneo/pim-community-dev/zipball/8cda9f6f4f29bd14a7d04a6b94fdfdd6efa824ef",
-                "reference": "8cda9f6f4f29bd14a7d04a6b94fdfdd6efa824ef",
+                "url": "https://api.github.com/repos/akeneo/pim-community-dev/zipball/2cfeb26becfe81e33b4d097d2f0dba7de18cc6c8",
+                "reference": "2cfeb26becfe81e33b4d097d2f0dba7de18cc6c8",
                 "shasum": ""
             },
             "require": {
@@ -170,7 +170,7 @@
                 }
             ],
             "description": "Akeneo PIM, the future of catalog management is open!",
-            "time": "2019-01-29T14:42:05+00:00"
+            "time": "2019-01-31T10:05:13+00:00"
         },
         {
             "name": "ass/xmlsecurity",
