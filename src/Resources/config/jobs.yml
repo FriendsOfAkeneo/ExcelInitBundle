@@ -72,7 +72,7 @@ services:
             - { name: akeneo_batch.job.job_parameters.constraint_collection_provider }
 
     pim_excel_installer.job.job_parameters.form.job_instance:
-        class: '%pim_enrich.provider.form.job_instance.class%'
+        class: 'Akeneo\Platform\Bundle\ImportExportBundle\Provider\Form\JobInstanceFormProvider'
         arguments:
             -
                 xlsx_init_import: pim-job-instance-xlsx-base-import
