@@ -11,7 +11,7 @@ stage("Tests") {
     podTemplate(label: 'excel-init-ee', containers: [
       containerTemplate(
         name: "elasticsearch",
-        image: "elasticsearch:5.5",
+        image: "elasticsearch-oss:6.5.4",
         resourceRequestCpu: '100m',
         resourceRequestMemory: '200Mi',
         envVars: [
@@ -38,7 +38,7 @@ stage("Tests") {
         name: "php",
         ttyEnabled: true,
         command: 'cat',
-        image: "akeneo/php:7.1",
+        image: "akeneo/php:7.2",
         resourceRequestCpu: '100m',
         resourceRequestMemory: '1000Mi',
         envVars: [
@@ -49,7 +49,7 @@ stage("Tests") {
       node('excel-init-ee') {
         container("php") {
           checkout([$class: 'GitSCM',
-            branches: [[name: "2.3"]],
+            branches: [[name: "3.0"]],
             userRemoteConfigs: [[credentialsId: 'github-credentials', url: 'https://github.com/akeneo/pim-enterprise-standard.git']]
           ])
 
