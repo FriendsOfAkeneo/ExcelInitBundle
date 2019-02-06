@@ -3,7 +3,7 @@
 namespace Pim\Bundle\ExcelInitBundle\ArrayConverter\Flat;
 
 use Pim\Bundle\ExcelInitBundle\Mapper\AttributeTypeMapperInterface;
-use Pim\Component\Connector\ArrayConverter\FlatToStandard\Attribute as PimAttributeConverter;
+use Akeneo\Pim\Structure\Component\ArrayConverter\FlatToStandard\Attribute as PimAttributeConverter;
 
 /**
  * Convert flat format to standard format for attribute

@@ -83,6 +83,11 @@ class InitFileIteratorSpec extends ObjectBehavior
             ['Value-2-4-1', 'Value-2-4-2', 'Value-2-4-3', 'Value-2-4-4', 'Value-2-4-5',],
             ['Value-2-5-1', 'Value-2-5-2', 'Value-2-5-3', 'Value-2-5-4', 'Value-2-5-5',],
         ];
+        foreach ($values as $row) {
+            $this->current()->shouldReturn($row);
+            $this->next();
+        }
+        $this->valid()->shouldReturn(false);
     }
 
     public function it_can_use_a_different_valdata_range()

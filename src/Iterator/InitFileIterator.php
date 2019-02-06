@@ -2,9 +2,9 @@
 
 namespace Pim\Bundle\ExcelInitBundle\Iterator;
 
+use Akeneo\Tool\Component\Connector\Reader\File\FlatFileIterator;
 use Box\Spout\Reader\XLSX\Sheet;
 use Box\Spout\Reader\XLSX\SheetIterator;
-use Pim\Component\Connector\Reader\File\FlatFileIterator;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 /**
