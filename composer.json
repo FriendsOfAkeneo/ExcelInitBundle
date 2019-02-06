@@ -12,7 +12,7 @@
         }
     ],
     "require": {
-        "akeneo/pim-community-dev": "^3.0.0"
+        "akeneo/pim-community-dev": "3.1.x-dev"
     },
     "require-dev": {
         "phpspec/phpspec": "@stable",
