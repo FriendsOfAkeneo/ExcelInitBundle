@@ -11,7 +11,7 @@ stage("Tests") {
     podTemplate(label: 'excel-init-ee', containers: [
       containerTemplate(
         name: "elasticsearch",
-        image: "elasticsearch-oss:6.5.4",
+        image: "docker.elastic.co/elasticsearch/elasticsearch-oss:6.5.4",
         resourceRequestCpu: '100m',
         resourceRequestMemory: '200Mi',
         envVars: [
